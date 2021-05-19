@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
 
     public void getAllCardsFromDeck(Player p){
 
-            Debug.Log("getAllCardsFromDeck function");
+            // Debug.Log("getAllCardsFromDeck function");
            
 			
 			Transform real_deck_transform =GameObject.Find("OpenDeckItem").transform;
@@ -155,7 +155,7 @@ public class Player : MonoBehaviour
     // protected abstract void MyTurn();
     public IEnumerator waitAndPlayAgain(Player p)
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         if(p.MyCards.Count==0 && p.My3CloseCards.Count==0){
             // p.playerWon(p);
@@ -173,37 +173,39 @@ public class Player : MonoBehaviour
 
     public IEnumerator holdAndResume(Player nextPlayer,string name)
     {
-        Debug.Log("inside hold and resume");
-        GameObject deck=GameObject.Find("OpenDeckItem");
-        //// set image
-        Image image = deck.GetComponent<Image>();
-        Texture2D tex = Resources.Load<Texture2D>(name);
-        var sprite1 =Resources.Load <Sprite>(name ); // set cards pic
-        image.sprite =sprite1;
+        if(gameHandler.gameStatus=="started"){
+            Debug.Log("inside hold and resume");
+            GameObject deck=GameObject.Find("OpenDeckItem");
+            //// set image
+            Image image = deck.GetComponent<Image>();
+            Texture2D tex = Resources.Load<Texture2D>(name);
+            var sprite1 =Resources.Load <Sprite>(name ); // set cards pic
+            image.sprite =sprite1;
 
-        yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);
 
-        // image = deck.AddComponent<Image>();
-        tex = Resources.Load<Texture2D>("empty_card");
-        sprite1 =Resources.Load <Sprite>("empty_card" ); // set cards pic
-        image.sprite =sprite1;
-        // st.SetActive(false);
-
-
-        if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
-            
-            // this.playerWon(this);
-            StartCoroutine( this.playerWonCorrutine(this));
-
-			Debug.Log("won from hold and resume");
-
-            yield return new WaitForSeconds(0);
-
-        }
+            // image = deck.AddComponent<Image>();
+            tex = Resources.Load<Texture2D>("empty_card");
+            sprite1 =Resources.Load <Sprite>("empty_card" ); // set cards pic
+            image.sprite =sprite1;
+            // st.SetActive(false);
 
 
-        else if(nextPlayer.username=="Pc" ){
-            gameHandler.PcPlayer.MyTurn();
+            if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
+                
+                // this.playerWon(this);
+                StartCoroutine( this.playerWonCorrutine(this));
+
+                Debug.Log("won from hold and resume");
+
+                yield return new WaitForSeconds(0);
+
+            }
+
+
+            else if(nextPlayer.username=="Pc" ){
+                gameHandler.PcPlayer.MyTurn();
+            }
         }
     }
 
@@ -273,16 +275,16 @@ public class Player : MonoBehaviour
                 deckCleaned = gameHandler.TempOpenDeck.PutNewCard(card.value,1);
                 currPlayer.My3CloseCards.Remove(closeCardObject);
             
-            
+            if(currPlayer.username=="Pc" && card.value==8 && (currPlayer.MyCards.Count!=0 || currPlayer.My3CloseCards.Count!=0)){
+                StartCoroutine(gameHandler.PcPlayer.StopUserPlayer());
+            }
 
             }
 
             GameObject.Destroy(closeCardObject);
-            if(currPlayer.username=="Pc" && card.value==8){
-                StartCoroutine(gameHandler.PcPlayer.StopUserPlayer());
-            }
             
-            else if(card.value==10 || deckCleaned){
+            
+            if(card.value==10 || deckCleaned){
                 if(currPlayer.username=="Player"){
                     StartCoroutine(holdAndResume(gameHandler.player, card.value+card.shape));
                 }
@@ -296,10 +298,8 @@ public class Player : MonoBehaviour
             }
 
 
-            Debug.Log("inside close card clicked: curr player: "+currPlayer.username);
-            Debug.Log("inside close card clicked: curr player.MyCards.Count: "+currPlayer.MyCards.Count);
-            Debug.Log("inside close card clicked: curr player.My3CloseCards.Count: "+currPlayer.My3CloseCards.Count);
-            if(currPlayer.MyCards.Count==0 && currPlayer.My3CloseCards.Count==0){
+
+            if(gameHandler.gameStatus=="started" && currPlayer.MyCards.Count==0 && currPlayer.My3CloseCards.Count==0){
                 Debug.Log("won from close card clicked");
 
                 // currPlayer.playerWon(currPlayer);
@@ -307,11 +307,6 @@ public class Player : MonoBehaviour
 
                 return;
             }
-
-            
-        
-
-
 
         }
 

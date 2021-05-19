@@ -37,7 +37,7 @@ public void setup(){
     this.username="Pc";
     this.open_cards_transform =GameObject.Find("PcOpenCardsArea").transform;
 
-    Debug.Log("PcPlayer constructor");
+    // Debug.Log("PcPlayer constructor");
 
     this.gameHandler = GameObject.FindObjectOfType<GameHandler>();
     
@@ -52,7 +52,7 @@ public void setup(){
     PcCloseCard [] closeCards =GameObject.FindObjectsOfType<PcCloseCard>();
     for(int i=0; i<3 ; i++){ // player's close cards
             My3CloseCards.Insert(0,closeCards[i].gameObject);
-            Debug.Log(i+"added");
+            // Debug.Log(i+"added");
 
     }
     
@@ -92,35 +92,38 @@ public void setup(){
 public IEnumerator StopUserPlayer()
     {
         // GameObject StopPanel=GameObject.Find("StopPanel");
-        
-        // StopPanel.SetActive(true);
-        Popup popup = UIController.Instance.CreatePopup();
-			popup.InitNoButtons(gameHandler.gameObject.transform,
-				"Pc player stopped you\n(8 card), now it's his turn again..."
+        if(gameHandler.gameStatus=="started"){
+            // StopPanel.SetActive(true);
+            Popup popup = UIController.Instance.CreatePopup();
+                popup.InitNoButtons(gameHandler.gameObject.transform,
+                    "Pc player stopped you\n(8 card), now it's his turn again..."
 
 
-			 );
-        yield return new WaitForSeconds(3);
-        // gameObject.Destroy(popup.gameObject);
-        popup.No_Selected();
-        // StopPanel.SetActive(false);
-        
-        
-        if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
-            // this.playerWon(this);
-            StartCoroutine( playerWonCorrutine(this));
+                );
+            yield return new WaitForSeconds(3);
+            // gameObject.Destroy(popup.gameObject);
+            popup.No_Selected();
+            // StopPanel.SetActive(false);
             
-			Debug.Log("won from stop user");
+            
+            if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
+                // this.playerWon(this);
+                StartCoroutine( playerWonCorrutine(this));
+                
+                Debug.Log("won from stop user");
 
-            yield return null;
+                yield return null;
+            }
+            if(gameHandler.gameStatus=="started"){
+                MyTurn();
+            }
         }
-        MyTurn();
     }
 
 
 public void MyTurn(){
     if(gameHandler.gameStatus=="started"){
-        Debug.Log("got into pc turn");
+        // Debug.Log("got into pc turn");
         int bestVal=15;
         bool has3=false;
         bool has2=false;
@@ -163,7 +166,7 @@ public void MyTurn(){
                         localCardsToApply.Clear();
                         localCardsToApply.Add(MyCards[i].GetComponent<CardObject>());
                         bestVal = localCardsToApply[0].value;
-                        Debug.Log("bestVal now is: "+bestVal);
+                        // Debug.Log("bestVal now is: "+bestVal);
                     }
                     else if(currVal == bestVal){
                             localCardsToApply.Add(MyCards[i].GetComponent<CardObject>());

@@ -69,7 +69,7 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
     }
     
     public bool PutNewCard(int newValue,int count){ // return if the deck cleaned or not
-        Debug.Log("put new card: " +newValue + " count: "+count);
+        // Debug.Log("put new card: " +newValue + " count: "+count);
         if(newValue==3){
             if(lastCardValue==3){
                 this.currCount=this.currCount+count;
@@ -99,9 +99,7 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
         }
 
 
-        int children = this.transform.childCount;
-        // Transform real_deck_transform =GameObject.Find("OpenDeckItem").transform;
-        // int Tindex=0;
+       
         Transform LastChild = this.transform.GetChild(this.transform.childCount-1).transform; 
         for (int i = this.transform.childCount-2; i > -1; --i){
             Transform child=this.transform.GetChild(i).transform;
@@ -148,6 +146,7 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
         if(this.currCount==4 || newValue==10 ){
             cleanDeck();
             ret = true;
+            Debug.Log("true returned from putNewCard");
         }
         cardsToApply.Clear() ;
         currListVal= -1; 
@@ -158,18 +157,18 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
     }
 
     public void removeCardFromApplyList(CardObject card){
-        Debug.Log("inside remove card function");
+        // Debug.Log("inside remove card function");
         if(this.cardsToApply.Count == 1){
             this.currListVal= -1;
             this.lastCardValue = this.realLastValue;
         }
-        Debug.Log("value to remove: "+card.value);
+        // Debug.Log("value to remove: "+card.value);
         for(int i=0; i<cardsToApply.Count; i++){
             if(cardsToApply[i].value ==card.value){
-                Debug.Log("inside cardsToApply[i].value ==card.value");
+                // Debug.Log("inside cardsToApply[i].value ==card.value");
 
                 bool x =cardsToApply.Remove(card);
-                Debug.Log(x + " returned, now length of cardsToApply is: "+ cardsToApply.Count);
+                // Debug.Log(x + " returned, now length of cardsToApply is: "+ cardsToApply.Count);
                 
             }
         }
@@ -179,7 +178,7 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
 
     public void OnDrop(PointerEventData eventData){
         CardObject card= eventData.pointerDrag.GetComponent<CardObject>();
-        Debug.Log(card.value + " dropped in" + gameObject.name);
+        // Debug.Log(card.value + " dropped in" + gameObject.name);
         if(!card.applied && !card.isShared && gameHandler.gameStatus == "started"){
             if(this.isLegal(this.realLastValue,card.value) ||  this.currListVal==card.value )
             {

@@ -20,7 +20,7 @@ public class CloseDeckObject : MonoBehaviour
 
     public void pullCardsToUser(Player user, int numOfCards , bool open){
         
-        Debug.Log(user.username);
+        // Debug.Log(user.username);
      //// set user cards
 
      for(int i=0; i < numOfCards && ListOfCards.Count>0; i++ ){
@@ -105,7 +105,7 @@ public class CloseDeckObject : MonoBehaviour
     public void setup()
     {
         
-    Debug.Log("inside start of close deck");
+    // Debug.Log("inside start of close deck");
     this.ListOfCards=new List<GameObject>();
     this.gameHandler = GameObject.FindObjectOfType<GameHandler>();
   

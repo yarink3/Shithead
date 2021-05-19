@@ -89,7 +89,7 @@ public class GameHandler : MonoBehaviour,IDropHandler
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("GameHandler constructor");
+        // Debug.Log("GameHandler constructor");
         // this.WinnerPanel= GameObject.Find("WinnerPanel");
         // this.LoserPanel= GameObject.Find("LoserPanel");
         // this.NoCardsPanel=GameObject.Find("NoCardsPanel");

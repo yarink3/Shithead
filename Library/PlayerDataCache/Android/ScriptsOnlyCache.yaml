@@ -59,47 +59,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1424}
     - Class: 114
-      Script: {instanceID: 1516}
-    - Class: 114
-      Script: {instanceID: 1566}
+      Script: {instanceID: 1518}
     - Class: 114
       Script: {instanceID: 1568}
     - Class: 114
-      Script: {instanceID: 1642}
+      Script: {instanceID: 1570}
     - Class: 114
-      Script: {instanceID: 1706}
+      Script: {instanceID: 1644}
     - Class: 114
-      Script: {instanceID: 1826}
+      Script: {instanceID: 1708}
     - Class: 114
-      Script: {instanceID: 1922}
+      Script: {instanceID: 1828}
     - Class: 114
-      Script: {instanceID: 1992}
+      Script: {instanceID: 1924}
     - Class: 114
-      Script: {instanceID: 2220}
+      Script: {instanceID: 1994}
     - Class: 114
-      Script: {instanceID: 2368}
+      Script: {instanceID: 2222}
     - Class: 114
-      Script: {instanceID: 2482}
+      Script: {instanceID: 2370}
     - Class: 114
-      Script: {instanceID: 2646}
+      Script: {instanceID: 2484}
     - Class: 114
-      Script: {instanceID: 2828}
+      Script: {instanceID: 2648}
     - Class: 114
-      Script: {instanceID: 3054}
+      Script: {instanceID: 2830}
     - Class: 114
-      Script: {instanceID: 3214}
+      Script: {instanceID: 3056}
     - Class: 114
-      Script: {instanceID: 3372}
+      Script: {instanceID: 3216}
     - Class: 114
-      Script: {instanceID: 3422}
+      Script: {instanceID: 3374}
     - Class: 114
-      Script: {instanceID: 3436}
+      Script: {instanceID: 3424}
     - Class: 114
-      Script: {instanceID: 3452}
+      Script: {instanceID: 3438}
     - Class: 114
-      Script: {instanceID: 3514}
+      Script: {instanceID: 3454}
     - Class: 114
-      Script: {instanceID: 3600}
+      Script: {instanceID: 3516}
+    - Class: 114
+      Script: {instanceID: 3602}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -638,4 +638,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene 1.unity
-  playerPath: C:/Users/yarin/OneDrive/Desktop/yarin/UNITY/shithead/Shithead.apk
+  playerPath: C:/Users/yarin/OneDrive/Desktop/yarin/UNITY/Shithead/Shithead1.apk

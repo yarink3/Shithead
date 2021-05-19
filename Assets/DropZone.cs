@@ -10,7 +10,7 @@ public class DropZone : MonoBehaviour, IDropHandler{
             
         }
     public void OnDrop(PointerEventData eventData){
-        Debug.Log(eventData.pointerDrag.name + "dropped in" + gameObject.name);
+        // Debug.Log(eventData.pointerDrag.name + "dropped in" + gameObject.name);
         CardObject card= eventData.pointerDrag.GetComponent<CardObject>();
         if(card != null && !card.isShared && !card.applied){
 

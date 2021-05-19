@@ -24,7 +24,7 @@ public class MyCloseCard : MonoBehaviour , IDropHandler
     public void OnDrop(PointerEventData eventData){
         gameHandler.LayCard.Play();
         CardObject card= eventData.pointerDrag.GetComponent<CardObject>();
-        Debug.Log(card.value + " dropped in" + gameObject.name);
+        // Debug.Log(card.value + " dropped in" + gameObject.name);
        
         if(card!=null && !card.applied){
             UserPlayer user = gameHandler.player;

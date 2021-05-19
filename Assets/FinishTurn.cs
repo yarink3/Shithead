@@ -40,7 +40,7 @@ public class FinishTurn : MonoBehaviour
 
 			}
 			if(gameHandler.player.MyCards.Count<3){
-				Debug.Log("curr count: "+gameHandler.player.MyCards.Count);
+				// Debug.Log("curr count: "+gameHandler.player.MyCards.Count);
 				gameHandler.CloseDeck.pullCardsToUser(gameHandler.player,3-gameHandler.player.MyCards.Count,true);
 				// gameHandler.player.MyCards.Count=3;
 			}
@@ -82,7 +82,7 @@ public class FinishTurn : MonoBehaviour
 
 		gameHandler.player.SortMycards();
 
-		if(gameHandler.player.MyCards.Count==0 && gameHandler.player.My3CloseCards.Count==0){
+		if(gameHandler.gameStatus=="started" && gameHandler.player.MyCards.Count==0 && gameHandler.player.My3CloseCards.Count==0){
             StartCoroutine( gameHandler.player.playerWonCorrutine(gameHandler.player));
 			Debug.Log("won from finish turn");
             return;
@@ -107,7 +107,7 @@ public class FinishTurn : MonoBehaviour
 		Popup popup = UIController.Instance.CreatePopup();
 		popup.Init2Buttons(gameHandler.gameObject.transform,
 			"Are you sure you want to exit?",
-			"Main",
+			"Cancel",
 			"Exit"
 
 			);
@@ -115,9 +115,33 @@ public class FinishTurn : MonoBehaviour
 	}
 
 
-	
+	public void MuteAudio(){
+		Text txtTrans=GameObject.Find("MuteButton").transform.GetChild(0).GetComponent<Text>();
+
+		if(txtTrans.text=="MUTE"){
+			txtTrans.text="UNMUTE";
+		}
+		else{
+			txtTrans.text="MUTE";
+		}
+
+		AudioSource PullCard_audio = GameObject.Find("PullCard_audio").GetComponent<AudioSource>();
+		AudioSource	StartGame_audio = GameObject.Find("StartGame_audio").GetComponent<AudioSource>();
+		AudioSource LayCard_audio = GameObject.Find("LayCard_audio").GetComponent<AudioSource>();
+		AudioSource Win_audio = GameObject.Find("Win_audio").GetComponent<AudioSource>();
+		AudioSource start_clicked_audio = GameObject.Find("start_clicked_audio").GetComponent<AudioSource>();
+		
+		PullCard_audio.mute = !PullCard_audio.mute;
+		StartGame_audio.mute = !StartGame_audio.mute;
+		LayCard_audio.mute = !LayCard_audio.mute;
+		Win_audio.mute = !Win_audio.mute;
+		start_clicked_audio.mute = !start_clicked_audio.mute;
+
+	}
+
 	void Start(){
         this.gameHandler = GameObject.FindObjectOfType<GameHandler>();
     }
+
 	
 }

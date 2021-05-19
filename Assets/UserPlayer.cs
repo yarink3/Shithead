@@ -20,7 +20,7 @@ public class UserPlayer : Player
         My3CloseCards = new List<GameObject>() ;
         this.open_cards_transform =GameObject.Find("MyOpenCardsArea").transform;
 
-        Debug.Log("UserPlayer constructor"); 
+        // Debug.Log("UserPlayer constructor"); 
 
         this.username="Player";
         this.gameHandler = GameObject.FindObjectOfType<GameHandler>();
@@ -34,7 +34,7 @@ public class UserPlayer : Player
         MyCloseCard [] closeCards =GameObject.FindObjectsOfType<MyCloseCard>();
         for(int i=0; i<3 ; i++){ // player's close cards
                 My3CloseCards.Insert(0,closeCards[i].gameObject);
-                Debug.Log(i+"added");
+                // Debug.Log(i+"added");
 
         }
          gameHandler.CloseDeck.pullCardsToUser(this,6,true);

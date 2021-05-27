@@ -93,6 +93,7 @@ public IEnumerator StopUserPlayer()
     {
         // GameObject StopPanel=GameObject.Find("StopPanel");
         if(gameHandler.gameStatus=="started"){
+            gameHandler.HoldGameStatus="started";
             // StopPanel.SetActive(true);
             Popup popup = UIController.Instance.CreatePopup();
                 popup.InitNoButtons(gameHandler.gameObject.transform,
@@ -100,7 +101,7 @@ public IEnumerator StopUserPlayer()
 
 
                 );
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(4);
             // gameObject.Destroy(popup.gameObject);
             popup.No_Selected();
             // StopPanel.SetActive(false);
@@ -120,6 +121,28 @@ public IEnumerator StopUserPlayer()
         }
     }
 
+    public bool hasLegalMove(Player p){
+        // Debug.Log("inside my turn function");
+        for(int i=0; i<p.MyCards.Count  ; ++i){
+            if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue, p.MyCards[i].GetComponent<CardObject>().value)){
+
+                return true;
+            }
+        }
+        if(MyCards.Count==0){
+            if(My3CloseCards.Count > 0){
+                return true;
+            }
+            for(int i=0; i<p.My3OpenCards.Count; ++i){
+                if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue, p.My3OpenCards[i].GetComponent<CardObject>().value)){
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+
+    }
 
 public void MyTurn(){
     if(gameHandler.gameStatus=="started"){
@@ -184,6 +207,9 @@ public void MyTurn(){
                         int currVal=currCard.value;
                         if(currVal==3){
                             localCardsToApply.Add(currCard);
+                            if(MyCards.Count>=3){
+                                break;
+                            }
                         }
                     }
                 }
@@ -195,6 +221,9 @@ public void MyTurn(){
                         int currVal=currCard.value;
                         if(currVal==2){
                             localCardsToApply.Add(currCard);
+                            if(MyCards.Count>=3){
+                                break;
+                            }
                         }
                     }
                 }
@@ -205,7 +234,9 @@ public void MyTurn(){
                         int currVal=currCard.value;
                         if(currVal==10){
                             localCardsToApply.Add(currCard);
-                            break;
+                            if(MyCards.Count>=3){
+                                break;
+                            }
                         }
                     }
                 }
@@ -284,7 +315,7 @@ public void MyTurn(){
                     StartCoroutine(StopUserPlayer());
                 }
                 else if(deckCleaned){
-                    StartCoroutine(holdAndResume(gameHandler.PcPlayer, value+shape));
+                    StartCoroutine(holdAndResume(gameHandler.PcPlayer, value , shape));
                 }
                 
 

@@ -15,28 +15,7 @@ public class Player : MonoBehaviour
     public GameHandler gameHandler ;
     public Transform open_cards_transform ;
 
-    public bool hasLegalMove(Player p){
-        // Debug.Log("inside my turn function");
-        for(int i=0; i<p.MyCards.Count  ; ++i){
-            if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue, p.MyCards[i].GetComponent<CardObject>().value)){
 
-                return true;
-            }
-        }
-        if(MyCards.Count==0){
-            if(My3CloseCards.Count > 0){
-                return true;
-            }
-            for(int i=0; i<p.My3OpenCards.Count; ++i){
-                if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue, p.My3OpenCards[i].GetComponent<CardObject>().value)){
-                    return true;
-                }
-            }
-        }
-        
-        return false;
-
-    }
 
     public void getAllCardsFromDeck(Player p){
 
@@ -115,44 +94,9 @@ public class Player : MonoBehaviour
                 gameHandler.TempOpenDeck.setToZero();
             }
 
-
-
-        
     }
 
-    public bool hasBetterThan8(){
-        int valCheck;
-        bool all8 = true;
 
-        for(int i=0; i<MyCards.Count;i++){
-                valCheck=MyCards[i].GetComponent<CardObject>().value;
-                
-                if(valCheck>8 || valCheck ==2 || valCheck ==3){
-                    return true;
-                }
-                if(valCheck!=8){
-                    all8=false;
-                } 
-
-        }
-        
-        
-        if(all8){
-            for(int i=0; i<3; i++){
-                valCheck=My3OpenCards[i].GetComponent<CardObject>().value;
-                if(valCheck>8 || valCheck ==2 || valCheck ==3){
-                    return true;
-                }
-            }
-        }
-
-        return false;
-
-
-
-
-    }
-    // protected abstract void MyTurn();
     public IEnumerator waitAndPlayAgain(Player p)
     {
         yield return new WaitForSeconds(1);
@@ -171,9 +115,11 @@ public class Player : MonoBehaviour
         
     }
 
-    public IEnumerator holdAndResume(Player nextPlayer,string name)
+    public IEnumerator holdAndResume(Player nextPlayer,int value,string shape)
     {
         if(gameHandler.gameStatus=="started"){
+            string name= gameHandler.CloseDeck.get_val_string_for_pic(value.ToString()) + shape;
+            
             Debug.Log("inside hold and resume");
             GameObject deck=GameObject.Find("OpenDeckItem");
             //// set image
@@ -278,24 +224,25 @@ public class Player : MonoBehaviour
             if(currPlayer.username=="Pc" && card.value==8 && (currPlayer.MyCards.Count!=0 || currPlayer.My3CloseCards.Count!=0)){
                 StartCoroutine(gameHandler.PcPlayer.StopUserPlayer());
             }
-
-            }
-
-            GameObject.Destroy(closeCardObject);
-            
-            
-            if(card.value==10 || deckCleaned){
+            else if(card.value==10 || deckCleaned){
                 if(currPlayer.username=="Player"){
-                    StartCoroutine(holdAndResume(gameHandler.player, card.value+card.shape));
+                    StartCoroutine(holdAndResume(gameHandler.player, card.value , card.shape));
                 }
                 else{
-                    StartCoroutine(holdAndResume(gameHandler.PcPlayer, card.value+card.shape));
+                    StartCoroutine(holdAndResume(gameHandler.PcPlayer, card.value , card.shape));
 
                 }
             }
             else if(currPlayer.username=="Player" && card.value!=8) {
                 StartCoroutine(currPlayer.waitAndPlayAgain(gameHandler.PcPlayer));
             }
+
+            }
+
+            GameObject.Destroy(closeCardObject);
+            
+            
+            
 
 
 

@@ -17,6 +17,7 @@ public class Popup : MonoBehaviour
 
     [SerializeField] Text popupText;
 	public GameHandler gameHandler;
+    
 
     // Start is called before the first frame update
     // void Start()
@@ -25,6 +26,7 @@ public class Popup : MonoBehaviour
     // }
 
     public void No_Selected(){
+        // gameHandler.gameStatus="started";
         GameObject.Destroy(this.gameObject);
         if(gameHandler.gameStatus == "finished" ){
             //load homescreen
@@ -32,14 +34,17 @@ public class Popup : MonoBehaviour
 			
 
         }
-        else if( gameHandler.gameStatus=="holdExit"){
-            Application.Quit();
+        else if( gameHandler.gameStatus=="holdExit" || gameHandler.gameStatus=="holdNewGame" ){
+            gameHandler.gameStatus = gameHandler.HoldGameStatus;
             //  Load homescreen 
             // Scene scene = SceneManager.GetActiveScene();
             // SceneManager.LoadScene(scene.name);
             // gameHandler.gameStatus="not started";
 
         }
+
+        
+
         // else if(gameHandler.gameStatus=="hold"){
 
         // }
@@ -47,23 +52,23 @@ public class Popup : MonoBehaviour
     }
     
     public void Yes_Selected(){
+        
         GameObject.Destroy(this.gameObject);
         if(gameHandler.gameStatus=="finished" || gameHandler.gameStatus=="holdNewGame" ){
+            gameHandler.gameStatus = "started";
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
-            gameHandler.gameStatus="started";
+            
         }
         else if( gameHandler.gameStatus=="holdExit"){
-            //  Load homescreen 
-            // Scene scene = SceneManager.GetActiveScene();
-            // SceneManager.LoadScene(scene.name);
-            // gameHandler.gameStatus="not started";
-
+            Application.Quit();
+            
         }
         else {
             gameHandler.player.getAllCardsFromDeck(gameHandler.player);
             gameHandler.PcPlayer.MyTurn();
         }
+        
         
 
     }

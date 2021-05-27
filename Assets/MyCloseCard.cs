@@ -55,17 +55,7 @@ public class MyCloseCard : MonoBehaviour , IDropHandler
                 card.transform.localPosition = Vector3.zero;
                 card.transform.localRotation = Quaternion.identity;
 
-                // set the (maybe) new curr value
-            //     currListVal= card.value;
-
-
-            // }
-            
-            // else{
-            //     card.transform.SetParent(gameHandler.MyCardsArea.transform);
-            //     card.parentToReturnTo=gameHandler.MyCardsArea.transform;
-
-            
+ 
         }
     }
     

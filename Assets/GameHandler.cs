@@ -12,9 +12,10 @@ public class GameHandler : MonoBehaviour,IDropHandler
     public UserPlayer player = null;
     public PcPlayer PcPlayer = null;
     public TempOpenDeckObject TempOpenDeck = null;
-    public OpenDeckObject OpenDeck = null;
+    // public OpenDeckObject OpenDeck = null;
     public CloseDeckObject CloseDeck = null;
-    public string gameStatus = "not started"; // options: started , finished 
+    public string gameStatus = "not started"; 
+    public string HoldGameStatus = "not started"; 
     // public string [] Shapes = {"H","C","S","D"};
     public int turnId = 0; // 0 - me , 1 - PC
     public AudioSource LayCard;
@@ -96,7 +97,7 @@ public class GameHandler : MonoBehaviour,IDropHandler
         
         this.CloseDeck = GameObject.FindObjectOfType<CloseDeckObject>();
         this.TempOpenDeck = GameObject.FindObjectOfType<TempOpenDeckObject>();
-        this.OpenDeck = GameObject.FindObjectOfType<OpenDeckObject>();
+        // this.OpenDeck = GameObject.FindObjectOfType<OpenDeckObject>();
         
         this.player = GameObject.FindObjectOfType<UserPlayer>();
         this.PcPlayer = GameObject.FindObjectOfType<PcPlayer>();

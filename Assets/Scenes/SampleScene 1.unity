@@ -2373,9 +2373,9 @@ MonoBehaviour:
   player: {fileID: 0}
   PcPlayer: {fileID: 0}
   TempOpenDeck: {fileID: 0}
-  OpenDeck: {fileID: 0}
   CloseDeck: {fileID: 0}
   gameStatus: not started
+  HoldGameStatus: not started
   turnId: 0
   LayCard: {fileID: 343273831}
   WinAudio: {fileID: 1057013170}
@@ -4831,7 +4831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1

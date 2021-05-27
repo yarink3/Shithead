@@ -20,6 +20,10 @@ public class FinishTurn : MonoBehaviour
 	
 	public void onClick(){
 		if(gameHandler.gameStatus == "not started" && gameHandler.player.My3OpenCards.Count == 3){
+			
+			Image image= GameObject.Find("DoneButton").transform.GetComponent<Image>();
+			image.color = new Color32(255, 255, 255, 255);
+
 			GameObject.Find("DoneButton").GetComponentInChildren<Text>().text = "DONE";
 			gameHandler.gameStatus = "started";
 			StartAudio.Play();
@@ -36,7 +40,7 @@ public class FinishTurn : MonoBehaviour
 			// int numOfCardsToPull=Math.min()
 			bool deckCleaned=gameHandler.TempOpenDeck.PutNewCard( value,count);
 			if(deckCleaned){
-				StartCoroutine(gameHandler.player. holdAndResume(gameHandler.player, value+shape));	
+				StartCoroutine(gameHandler.player. holdAndResume(gameHandler.player, value , shape));	
 
 			}
 			if(gameHandler.player.MyCards.Count<3){
@@ -92,6 +96,7 @@ public class FinishTurn : MonoBehaviour
 		
 	}
 	public void NewGame(){
+		gameHandler.HoldGameStatus=gameHandler.gameStatus;
 		gameHandler.gameStatus="holdNewGame";
 		Popup popup = UIController.Instance.CreatePopup();
 		popup.Init2Buttons(gameHandler.gameObject.transform,
@@ -103,12 +108,13 @@ public class FinishTurn : MonoBehaviour
 		
 	}
 	public void ExitGame(){
+		gameHandler.HoldGameStatus=gameHandler.gameStatus;
 		gameHandler.gameStatus="holdExit";
 		Popup popup = UIController.Instance.CreatePopup();
 		popup.Init2Buttons(gameHandler.gameObject.transform,
 			"Are you sure you want to exit?",
-			"Cancel",
-			"Exit"
+			"Exit",
+			"Cancel"
 
 			);
 		

@@ -59,47 +59,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1424}
     - Class: 114
-      Script: {instanceID: 1518}
+      Script: {instanceID: 1516}
+    - Class: 114
+      Script: {instanceID: 1566}
     - Class: 114
       Script: {instanceID: 1568}
     - Class: 114
-      Script: {instanceID: 1570}
+      Script: {instanceID: 1642}
     - Class: 114
-      Script: {instanceID: 1644}
+      Script: {instanceID: 1706}
     - Class: 114
-      Script: {instanceID: 1708}
+      Script: {instanceID: 1826}
     - Class: 114
-      Script: {instanceID: 1828}
+      Script: {instanceID: 1922}
     - Class: 114
-      Script: {instanceID: 1924}
+      Script: {instanceID: 1992}
     - Class: 114
-      Script: {instanceID: 1994}
+      Script: {instanceID: 2220}
     - Class: 114
-      Script: {instanceID: 2222}
+      Script: {instanceID: 2368}
     - Class: 114
-      Script: {instanceID: 2370}
+      Script: {instanceID: 2482}
     - Class: 114
-      Script: {instanceID: 2484}
+      Script: {instanceID: 2646}
     - Class: 114
-      Script: {instanceID: 2648}
+      Script: {instanceID: 2826}
     - Class: 114
-      Script: {instanceID: 2830}
+      Script: {instanceID: 3052}
     - Class: 114
-      Script: {instanceID: 3056}
+      Script: {instanceID: 3212}
     - Class: 114
-      Script: {instanceID: 3216}
+      Script: {instanceID: 3370}
     - Class: 114
-      Script: {instanceID: 3374}
+      Script: {instanceID: 3420}
     - Class: 114
-      Script: {instanceID: 3424}
+      Script: {instanceID: 3434}
     - Class: 114
-      Script: {instanceID: 3438}
+      Script: {instanceID: 3450}
     - Class: 114
-      Script: {instanceID: 3454}
+      Script: {instanceID: 3512}
     - Class: 114
-      Script: {instanceID: 3516}
-    - Class: 114
-      Script: {instanceID: 3602}
+      Script: {instanceID: 3598}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -427,12 +427,6 @@ ScriptsOnlyBuild:
     className: TMP_Settings
   - hash:
       serializedVersion: 2
-      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: User
-  - hash:
-      serializedVersion: 2
       Hash: cf9f5cf2c3145a37ac07f00e50e460f9
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
@@ -529,7 +523,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 50745308eb4a5e856c638216fd3ce995
+      Hash: f236b45c11e17279c689a2a28ac223ba
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameHandler
@@ -625,12 +619,6 @@ ScriptsOnlyBuild:
     className: FinishTurn
   - hash:
       serializedVersion: 2
-      Hash: 957c172005c07e44deeba8f69af0eeb7
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: OpenDeckObject
-  - hash:
-      serializedVersion: 2
       Hash: 4fd8bf02e3089425d3502e26c44ba31a
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -638,4 +626,4 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/SampleScene 1.unity
-  playerPath: C:/Users/yarin/OneDrive/Desktop/yarin/UNITY/Shithead/Shithead1.apk
+  playerPath: C:/Users/yarin/OneDrive/Desktop/yarin/UNITY/Shithead/Shithead2.apk

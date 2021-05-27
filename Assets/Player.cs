@@ -18,93 +18,86 @@ public class Player : MonoBehaviour
 
 
     public void getAllCardsFromDeck(Player p){
+    // player taked all the cards from the open deck
 
-            // Debug.Log("getAllCardsFromDeck function");
-           
-			
-			Transform real_deck_transform =GameObject.Find("OpenDeckItem").transform;
-			Transform temp_deck_transform =GameObject.Find("TempDeck").transform;
-			// Transform open_cards_transform =GameObject.Find("MyOpenCardsArea").transform;
+        Transform real_deck_transform =GameObject.Find("OpenDeckItem").transform;
+        Transform temp_deck_transform =GameObject.Find("TempDeck").transform;
 
-			int children1 =real_deck_transform.childCount;
-			int children2 =temp_deck_transform.childCount;
+        int children1 =real_deck_transform.childCount;
+        int children2 =temp_deck_transform.childCount;
 
-			for (int i = 0; real_deck_transform.childCount!=0; ++i){
-				Transform child0Trans=real_deck_transform.GetChild(0).transform;
-				// Debug.Log(child0Trans.gameObject.name);
+        for (int i = 0; real_deck_transform.childCount!=0; ++i){
+            Transform child0Trans=real_deck_transform.GetChild(0).transform;
 
-                Image image= child0Trans.GetComponent<Image>();
-				image.color = new Color32(255, 255, 255, 255);
-                
-                if(p.username=="Player"){
-                    child0Trans.GetComponent<CardObject>().applied=false;
-                    child0Trans.GetComponent<CardObject>().isShared=false;
-                }
-                else{
-                    var sprite1 =Resources.Load <Sprite>("red_back" ); // set cards pic
-                    image.sprite =sprite1;
-                }
-				
-				p.MyCards.Add( child0Trans.gameObject);
-				child0Trans.SetParent(p.open_cards_transform);
-
-				
-				int new_children =p.open_cards_transform.childCount;
-				p.open_cards_transform.GetChild(new_children-1).transform.localPosition = Vector3.one;
-				p.open_cards_transform.GetChild(new_children-1).transform.localRotation = Quaternion.identity;
-				// change the card angle
-
-				
-			}
-
-			for (int i = 0; temp_deck_transform.childCount!=0; ++i){
-				Transform child0Trans=temp_deck_transform.GetChild(0).transform;
-				// Debug.Log(child0Trans.name);
-                Image image= child0Trans.GetComponent<Image>();
-				image.color = new Color32(255, 255, 255, 255);
-
-				if(p.username=="Player"){
-                    child0Trans.GetComponent<CardObject>().applied=false;
-                    child0Trans.GetComponent<CardObject>().isShared=false;
-                }
-                else{
-                    var sprite1 =Resources.Load <Sprite>("red_back" ); // set cards pic
-                    image.sprite =sprite1;
-                }
-
-				
-				p.MyCards.Add( child0Trans.gameObject);
-				child0Trans.SetParent(p.open_cards_transform);
-
-				
-				int new_children =p.open_cards_transform.childCount;
-				p.open_cards_transform.GetChild(new_children-1).transform.localPosition = Vector3.one;
-				p.open_cards_transform.GetChild(new_children-1).transform.localRotation = Quaternion.identity;
-				// change the card angle
-
-				
-			}
-			p.gameHandler.TempOpenDeck.realLastValue =2;
-			p.gameHandler.TempOpenDeck.lastCardValue =2;
-
+            Image image= child0Trans.GetComponent<Image>();
+            image.color = new Color32(255, 255, 255, 255);
+            
             if(p.username=="Player"){
-			    this.SortMycards();
+                child0Trans.GetComponent<CardObject>().applied=false;
+                child0Trans.GetComponent<CardObject>().isShared=false;
             }
             else{
-                gameHandler.TempOpenDeck.setToZero();
+                var sprite1 =Resources.Load <Sprite>("red_back" ); // set cards pic
+                image.sprite =sprite1;
             }
+            
+            p.MyCards.Add( child0Trans.gameObject);
+            child0Trans.SetParent(p.open_cards_transform);
+
+            int new_children =p.open_cards_transform.childCount;
+            p.open_cards_transform.GetChild(new_children-1).transform.localPosition = Vector3.one;
+            p.open_cards_transform.GetChild(new_children-1).transform.localRotation = Quaternion.identity;
+            // change the card angle
+
+            
+        }
+
+        for (int i = 0; temp_deck_transform.childCount!=0; ++i){
+            Transform child0Trans=temp_deck_transform.GetChild(0).transform;
+            Image image= child0Trans.GetComponent<Image>();
+            image.color = new Color32(255, 255, 255, 255);
+
+            if(p.username=="Player"){
+                child0Trans.GetComponent<CardObject>().applied=false;
+                child0Trans.GetComponent<CardObject>().isShared=false;
+            }
+            else{
+                var sprite1 =Resources.Load <Sprite>("red_back" ); // set cards pic
+                image.sprite =sprite1;
+            }
+
+            
+            p.MyCards.Add( child0Trans.gameObject);
+            child0Trans.SetParent(p.open_cards_transform);
+
+            
+            int new_children =p.open_cards_transform.childCount;
+            p.open_cards_transform.GetChild(new_children-1).transform.localPosition = Vector3.one;
+            p.open_cards_transform.GetChild(new_children-1).transform.localRotation = Quaternion.identity;
+            // change the card angle
+
+            
+        }
+        p.gameHandler.TempOpenDeck.realLastValue =2;
+        p.gameHandler.TempOpenDeck.lastCardValue =2;
+
+        if(p.username=="Player"){
+            this.SortMycards();
+        }
+        else{
+            gameHandler.TempOpenDeck.setToZero();
+        }
 
     }
 
 
-    public IEnumerator waitAndPlayAgain(Player p)
-    {
+    public IEnumerator waitAndPlayAgain(Player p){
+        // puts the card, wait(to show the user) and play again.
+
         yield return new WaitForSeconds(1);
 
         if(p.MyCards.Count==0 && p.My3CloseCards.Count==0){
-            // p.playerWon(p);
             StartCoroutine( p.playerWonCorrutine(p));
-
             yield return new WaitForSeconds(0);
 
         }
@@ -115,40 +108,31 @@ public class Player : MonoBehaviour
         
     }
 
-    public IEnumerator holdAndResume(Player nextPlayer,int value,string shape)
-    {
+    public IEnumerator holdAndResume(Player nextPlayer,int value,string shape){
+        // hold the sent card's pic(to show the user) and resume the game
         if(gameHandler.gameStatus=="started"){
             string name= gameHandler.CloseDeck.get_val_string_for_pic(value.ToString()) + shape;
             
-            Debug.Log("inside hold and resume");
             GameObject deck=GameObject.Find("OpenDeckItem");
+
             //// set image
             Image image = deck.GetComponent<Image>();
-            Texture2D tex = Resources.Load<Texture2D>(name);
             var sprite1 =Resources.Load <Sprite>(name ); // set cards pic
             image.sprite =sprite1;
 
             yield return new WaitForSeconds(1);
 
-            // image = deck.AddComponent<Image>();
-            tex = Resources.Load<Texture2D>("empty_card");
             sprite1 =Resources.Load <Sprite>("empty_card" ); // set cards pic
             image.sprite =sprite1;
-            // st.SetActive(false);
 
 
             if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
-                
-                // this.playerWon(this);
+                //player won
+
                 StartCoroutine( this.playerWonCorrutine(this));
-
-                Debug.Log("won from hold and resume");
-
                 yield return new WaitForSeconds(0);
 
             }
-
-
             else if(nextPlayer.username=="Pc" ){
                 gameHandler.PcPlayer.MyTurn();
             }
@@ -156,20 +140,18 @@ public class Player : MonoBehaviour
     }
 
     public void closeCardClicked(Player currPlayer, CardObject OpenCardOnMe,GameObject closeCardObject){
-        Debug.Log("close card clicked");
+        
         CardObject card = closeCardObject.transform.GetComponent<CardObject>();
         bool deckCleaned=false;
         if (currPlayer.MyCards.Count == 0 && currPlayer.My3OpenCards.Count ==0 ){
             //// set image
             Image image = closeCardObject.transform.GetChild(0).transform.GetComponent<Image>();
-            // Texture2D tex = Resources.Load<Texture2D>(closeCardObject.name);
            
             card.isShared=false;
             Transform temp_deck_transform =GameObject.Find("TempDeck").transform;
 
             if(!gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue,card.value)){
 
-                // gameHandler.ActivePanel({"Illeagle move","No luck this time, you will get all the cards.", "Ok"})
                 if(currPlayer.username=="Player"){
                     Popup popup = UIController.Instance.CreatePopup();
                     popup.Init1Button(gameHandler.gameObject.transform,
@@ -178,16 +160,12 @@ public class Player : MonoBehaviour
                     );
                     var sprite1 =Resources.Load <Sprite>(closeCardObject.transform.GetChild(0).name); // set cards pic
                     image.sprite =sprite1;
-                    // this.CloseCardsPanel.SetActive(true);
-                    // EditorUtility.DisplayDialog ("Illeagle move","No luck this time, you will get all the cards.", "Ok");
                 }
                 else{
                     var sprite1 =Resources.Load <Sprite>("red_back"); // set cards pic
                     image.sprite =sprite1;
                 }
 
-                
-                
                 currPlayer.MyCards.Add(closeCardObject.transform.GetChild(0).gameObject);
                 currPlayer.My3CloseCards.Remove(closeCardObject.transform.GetChild(0).gameObject);
                 currPlayer.My3CloseCards.Remove(closeCardObject);
@@ -201,17 +179,9 @@ public class Player : MonoBehaviour
                 gameHandler.TempOpenDeck.realLastValue =2;
                 gameHandler.TempOpenDeck.lastCardValue =2;
                 
-                // else{
-                //      StartCoroutine(gameHandler.player.waitAndPlayAgain(gameHandler.player));
 
-                // }
-			
-		
-
-        
             }
             else{
-                
                 
                 card.applied=true;
                 card.isShared=false;
@@ -241,26 +211,13 @@ public class Player : MonoBehaviour
 
             GameObject.Destroy(closeCardObject);
             
-            
-            
-
-
 
             if(gameHandler.gameStatus=="started" && currPlayer.MyCards.Count==0 && currPlayer.My3CloseCards.Count==0){
-                Debug.Log("won from close card clicked");
 
-                // currPlayer.playerWon(currPlayer);
                 StartCoroutine( currPlayer.playerWonCorrutine(currPlayer));
-
                 return;
             }
-
-        }
-
-        
-
-
-        
+        } 
     }
 
      public IEnumerator playerWonCorrutine(Player p)
@@ -268,12 +225,8 @@ public class Player : MonoBehaviour
         if(p.username=="Player"){
             gameHandler.WinAudio.Play();
         }
-        // else{
-        //     gameHandler.LoseAudio.Play();
 
-        // }
         yield return new WaitForSeconds(1);
-         Debug.Log(p.username+" won!!!!");
         gameHandler.gameStatus="finished";
         
 
@@ -309,8 +262,6 @@ public class Player : MonoBehaviour
         MyCards[i].transform.SetSiblingIndex(i);
         }
     }
-
-
 
 
 }

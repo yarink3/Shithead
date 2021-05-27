@@ -10,7 +10,6 @@ public class DropZone : MonoBehaviour, IDropHandler{
             
         }
     public void OnDrop(PointerEventData eventData){
-        // Debug.Log(eventData.pointerDrag.name + "dropped in" + gameObject.name);
         CardObject card= eventData.pointerDrag.GetComponent<CardObject>();
         if(card != null && !card.isShared && !card.applied){
 
@@ -21,16 +20,11 @@ public class DropZone : MonoBehaviour, IDropHandler{
                 card.transform.SetParent(this.transform);
                 card.parentToReturnTo = this.transform;
                 
-                // Debug.Log(card.value + " "+card.shape+ " is out of deck");
                 this.gameHandler.TempOpenDeck.removeCardFromApplyList(card);
                 card.transform.localPosition = Vector3.zero;
                 card.transform.localRotation = Quaternion.identity;
-                    
-               
+  
             }
-            
-            
-
         }
     }
 

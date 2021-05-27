@@ -19,9 +19,7 @@ public class CloseDeckObject : MonoBehaviour
     }
 
     public void pullCardsToUser(Player user, int numOfCards , bool open){
-        
-        // Debug.Log(user.username);
-     //// set user cards
+    //// sets user cards
 
      for(int i=0; i < numOfCards && ListOfCards.Count>0; i++ ){
         PullCard.Play();
@@ -83,6 +81,7 @@ public class CloseDeckObject : MonoBehaviour
     }
     
     public string get_val_string_for_pic(string val_str){
+    // returns the string value of card
         switch (val_str)
             {
             case "11":
@@ -104,14 +103,14 @@ public class CloseDeckObject : MonoBehaviour
 
     public void setup()
     {
+    //constructor
         
-    // Debug.Log("inside start of close deck");
     this.ListOfCards=new List<GameObject>();
     this.gameHandler = GameObject.FindObjectOfType<GameHandler>();
   
     string [] Shapes = {"H","C","S","D"};
 
-    for(int shapeId = 0; shapeId<4 ; shapeId++){ //TODO change to 4
+    for(int shapeId = 0; shapeId<4 ; shapeId++){
         for(int val=2; val<=14 ; val++){
         string val_str=get_val_string_for_pic(val.ToString());
 
@@ -125,7 +124,6 @@ public class CloseDeckObject : MonoBehaviour
 
         //// set image
         Image image = imgObject.AddComponent<Image>();
-        Texture2D tex = Resources.Load<Texture2D>(val_str +Shapes[shapeId]);
         var sprite1 =Resources.Load <Sprite>(val_str +Shapes[shapeId] ); // set cards pic
         image.sprite =sprite1;
    

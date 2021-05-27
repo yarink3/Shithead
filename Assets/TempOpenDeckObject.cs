@@ -7,8 +7,6 @@ using UnityEngine.EventSystems;
 public class TempOpenDeckObject : MonoBehaviour, IDropHandler 
 {
 
-    
-
     public int lastCardValue ;
     public int realLastValue ;
     public int currCount ;
@@ -34,6 +32,8 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
 
 
     public bool isLegal(int old, int newValue){
+        // check if it is legal to put the new value ove the old.
+
         if(old==-1 || newValue==-1){
             return false;
         }
@@ -57,19 +57,18 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
         this.lastCardValue=2;
         this.realLastValue=2;
         for (int i=0 ; i<real_deck_transform.childCount; i++){
-            // Debug.Log("cleaning...");
             Destroy(real_deck_transform.GetChild(i).gameObject);
         }
         for (int i=0 ; i<temp_deck_transform.childCount; i++){
-            // Debug.Log("cleaning...");
             Destroy(temp_deck_transform.GetChild(i).gameObject);
         }
-        // Destroy(real_deck_transform.GetChild(0).gameObject);
         CurrCountText.text="Current count: 0";
     }
     
-    public bool PutNewCard(int newValue,int count){ // return if the deck cleaned or not
-        // Debug.Log("put new card: " +newValue + " count: "+count);
+    public bool PutNewCard(int newValue,int count){
+        // put new card(s) on the top of the open deck,
+        // returns if the deck cleaned or not
+
         if(newValue==3){
             if(lastCardValue==3){
                 this.currCount=this.currCount+count;
@@ -107,69 +106,47 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
             child.GetComponent<CardObject>().applied=true;
             gameHandler.player.MyCards.Remove( child.gameObject);
              if(newValue!=3){ 
-
                 child.SetParent(real_deck_transform);
-                // int new_children =real_deck_transform.childCount;
                 child.localPosition = Vector3.one;
-                child.localRotation = Quaternion.identity;
-                // change the card angle
-           
-            
+                child.localRotation = Quaternion.identity;           
             }
             else{
                Image sr= child.GetComponent<Image>();
               sr.color = new Color32(255, 255, 255, 100);
-            //   Tindex++;
-            //    sr.color=emit;
+
             }
             }
         }
         LastChild.GetComponent<CardObject>().applied=true;
             gameHandler.player.MyCards.Remove( LastChild.gameObject);
              if(newValue!=3){ 
-
                 LastChild.SetParent(real_deck_transform);
-                // int new_LastChildren =real_deck_transform.LastChildCount;
                 LastChild.localPosition = Vector3.one;
                 LastChild.localRotation = Quaternion.identity;
-                // change the card angle
-           
-            
             }
             else{
                Image sr= LastChild.GetComponent<Image>();
-              sr.color = new Color32(255, 255, 255, 100);
-            //   Tindex++;
-            //    sr.color=emit;
+                sr.color = new Color32(255, 255, 255, 100);
             }
         bool ret=false;
         if(this.currCount==4 || newValue==10 ){
             cleanDeck();
             ret = true;
-            Debug.Log("true returned from putNewCard");
         }
         cardsToApply.Clear() ;
         currListVal= -1; 
 
         return ret;
-        
-          
     }
 
     public void removeCardFromApplyList(CardObject card){
-        // Debug.Log("inside remove card function");
         if(this.cardsToApply.Count == 1){
             this.currListVal= -1;
             this.lastCardValue = this.realLastValue;
         }
-        // Debug.Log("value to remove: "+card.value);
         for(int i=0; i<cardsToApply.Count; i++){
             if(cardsToApply[i].value ==card.value){
-                // Debug.Log("inside cardsToApply[i].value ==card.value");
-
-                bool x =cardsToApply.Remove(card);
-                // Debug.Log(x + " returned, now length of cardsToApply is: "+ cardsToApply.Count);
-                
+                bool x =cardsToApply.Remove(card);                
             }
         }
 
@@ -177,8 +154,9 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
 
 
     public void OnDrop(PointerEventData eventData){
+        // desides what to to whe the user drops a cards on the deck
+
         CardObject card= eventData.pointerDrag.GetComponent<CardObject>();
-        // Debug.Log(card.value + " dropped in" + gameObject.name);
         if(!card.applied && !card.isShared && gameHandler.gameStatus == "started"){
             if(this.isLegal(this.realLastValue,card.value) ||  this.currListVal==card.value )
             {
@@ -196,11 +174,9 @@ public class TempOpenDeckObject : MonoBehaviour, IDropHandler
                 // set the (maybe) new curr value
                 currListVal= card.value;
 
-
             }
             
             else{
-                // UserPlayer user = (UserPlayer) gameHandler.Players_list[0];
                 UserPlayer user = gameHandler.player;
                 card.transform.SetParent(user.MyOpenCardsArea.transform);
                 card.parentToReturnTo = (user.MyOpenCardsArea.transform);

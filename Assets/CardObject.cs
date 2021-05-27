@@ -20,8 +20,8 @@ public class CardObject : MonoBehaviour,IBeginDragHandler, IDragHandler , IEndDr
         shape=s;
     }
     public void OnBeginDrag(PointerEventData eventData){
-            // Debug.Log("card is start dragged");
-
+    //when the user start to drag the card
+        
         if(!applied && !isShared){
             last=this.transform.parent;
             
@@ -31,10 +31,8 @@ public class CardObject : MonoBehaviour,IBeginDragHandler, IDragHandler , IEndDr
         
     }
     public void OnEndDrag(PointerEventData eventData){
-        // Debug.Log("card is end dragged");
+       
         if(!this.applied && !isShared ){
-            
-
             // change the card angle
             this.transform.localPosition = Vector3.zero;
             this.transform.localRotation = Quaternion.identity;
@@ -42,15 +40,12 @@ public class CardObject : MonoBehaviour,IBeginDragHandler, IDragHandler , IEndDr
             if(parentToReturnTo == null){
                 this.transform.SetParent(last.transform);
             }
-            
-       
         }
-        GetComponent<CanvasGroup>().blocksRaycasts = true;
-        
-        
+        GetComponent<CanvasGroup>().blocksRaycasts = true;     
     }
+
     public void OnDrag(PointerEventData eventData){
-        // Debug.Log("card is being dragged");
+        // changes the live card location while dragging
         if(!applied && !isShared){
             this.transform.position  = eventData.position;
         }

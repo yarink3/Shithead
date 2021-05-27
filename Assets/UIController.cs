@@ -20,7 +20,5 @@ public class UIController : MonoBehaviour
         GameObject PopupGo =Instantiate(Resources.Load("UI/Popup") as GameObject);
         return PopupGo.GetComponent<Popup>();
 
-
-
     }
 }

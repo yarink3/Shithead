@@ -6,12 +6,10 @@ using UnityEngine.UI;
 
 public class PcPlayer : Player
 {
-// public GameObject st;//=GameObject.Find("StopText");
 
 protected PcPlayer() {
-            // Debug.Log("PcPlayer constructor");
             
-        }
+}
 
 public GameObject getHighestCard(){
     List<GameObject> cards = new List<GameObject>(MyCards);
@@ -37,23 +35,18 @@ public void setup(){
     this.username="Pc";
     this.open_cards_transform =GameObject.Find("PcOpenCardsArea").transform;
 
-    // Debug.Log("PcPlayer constructor");
-
     this.gameHandler = GameObject.FindObjectOfType<GameHandler>();
     
-    
-
     DropZone [] dropzones =GameObject.FindObjectsOfType<DropZone>();
     for(int i=0; i< dropzones.Length; i++){
         if(dropzones[i].transform.name == "PcOpenCardsArea"){
             MyOpenCardsArea=dropzones[i];
         }
     }
-    PcCloseCard [] closeCards =GameObject.FindObjectsOfType<PcCloseCard>();
+    GameObject closeCardsList=GameObject.Find("PcCloseCards");
     for(int i=0; i<3 ; i++){ // player's close cards
-            My3CloseCards.Insert(0,closeCards[i].gameObject);
-            // Debug.Log(i+"added");
-
+            GameObject closeCardsI=closeCardsList.transform.GetChild(i).gameObject;
+            My3CloseCards.Insert(0,closeCardsI);
     }
     
     gameHandler.CloseDeck.pullCardsToUser(this,6,true);
@@ -82,50 +75,37 @@ public void setup(){
 
         //// set image
         Image image = card1.GetComponent<Image>();
-        // Texture2D tex = Resources.Load<Texture2D>(val_str +Shapes[shapeId]);
         var sprite1 =Resources.Load <Sprite>(card1.name ); // set cards pic
         image.sprite =sprite1;
 
     }
 }
 
-public IEnumerator StopUserPlayer()
-    {
-        // GameObject StopPanel=GameObject.Find("StopPanel");
+public IEnumerator StopUserPlayer(){
+    // stop the user player and plays again
+    if(gameHandler.gameStatus=="started"){
+        gameHandler.HoldGameStatus="started";
+        Popup popup = UIController.Instance.CreatePopup();
+        popup.InitNoButtons(gameHandler.gameObject.transform,
+            "Pc player stopped you\n(8 card), now it's his turn again..."
+            );
+        yield return new WaitForSeconds(4);
+        popup.No_Selected();
+        
+        if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
+            StartCoroutine( playerWonCorrutine(this));
+            yield return null;
+        }
         if(gameHandler.gameStatus=="started"){
-            gameHandler.HoldGameStatus="started";
-            // StopPanel.SetActive(true);
-            Popup popup = UIController.Instance.CreatePopup();
-                popup.InitNoButtons(gameHandler.gameObject.transform,
-                    "Pc player stopped you\n(8 card), now it's his turn again..."
-
-
-                );
-            yield return new WaitForSeconds(4);
-            // gameObject.Destroy(popup.gameObject);
-            popup.No_Selected();
-            // StopPanel.SetActive(false);
-            
-            
-            if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
-                // this.playerWon(this);
-                StartCoroutine( playerWonCorrutine(this));
-                
-                Debug.Log("won from stop user");
-
-                yield return null;
-            }
-            if(gameHandler.gameStatus=="started"){
-                MyTurn();
-            }
+            MyTurn();
         }
     }
+}
 
     public bool hasLegalMove(Player p){
-        // Debug.Log("inside my turn function");
+        //checks if the PcPlayer has legal move to play
         for(int i=0; i<p.MyCards.Count  ; ++i){
             if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue, p.MyCards[i].GetComponent<CardObject>().value)){
-
                 return true;
             }
         }
@@ -145,8 +125,9 @@ public IEnumerator StopUserPlayer()
     }
 
 public void MyTurn(){
+    // plays the PcPlayer turn
+
     if(gameHandler.gameStatus=="started"){
-        // Debug.Log("got into pc turn");
         int bestVal=15;
         bool has3=false;
         bool has2=false;
@@ -157,12 +138,9 @@ public void MyTurn(){
             return;
         }
 
-
         if(MyCards.Count==0){
             int index=Random.Range(0,My3CloseCards.Count);
-            this.closeCardClicked( gameHandler.PcPlayer,null,My3CloseCards[index]);
-        // gameObject.Destroy(My3CloseCards[index]);
-            
+            this.closeCardClicked( gameHandler.PcPlayer,null,My3CloseCards[index]);            
             return;
 
         }
@@ -173,7 +151,6 @@ public void MyTurn(){
 
                 for (int i=0 ;i<MyCards.Count  ; ++i){
                     int currVal=MyCards[i].GetComponent<CardObject>().value;
-                    // Debug.Log("for "+currVal+" : "+(currVal > 3 && (i==0 || currVal < bestVal) && gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue,currVal)));
 
                     if(currVal==3){
                         has3=true;
@@ -189,14 +166,13 @@ public void MyTurn(){
                         localCardsToApply.Clear();
                         localCardsToApply.Add(MyCards[i].GetComponent<CardObject>());
                         bestVal = localCardsToApply[0].value;
-                        // Debug.Log("bestVal now is: "+bestVal);
                     }
                     else if(currVal == bestVal){
                             localCardsToApply.Add(MyCards[i].GetComponent<CardObject>());
                          }
 
                 }
-            // }
+            
             /// best card (not 3 or 2) is not legal
             if(!gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue , bestVal) || bestVal ==15){
 
@@ -244,10 +220,6 @@ public void MyTurn(){
                     //I have nothing to do
                     getAllCardsFromDeck(this);
                 }
-
-
-
-
             }
             
             if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue , localCardsToApply[0].value)){
@@ -255,13 +227,11 @@ public void MyTurn(){
                 int value= localCardsToApply[0].value;
                 string shape= localCardsToApply[0].shape;
                 int count= localCardsToApply.Count;
-                // Debug.Log("val: "+value+", count: "+count);
 
                 for(int i=localCardsToApply.Count -1; i>=0;--i){
                     CardObject card= localCardsToApply[i];
                     //// set image
                     Image image = card.GetComponent<Image>();
-                    // Texture2D tex = Resources.Load<Texture2D>(val_str +Shapes[shapeId]);
                     var sprite1 =Resources.Load <Sprite>(card.name ); // set cards pic
                     image.sprite =sprite1;
                     gameHandler.TempOpenDeck.addToList(card);
@@ -294,10 +264,8 @@ public void MyTurn(){
                             CardObject card = go.transform.GetComponent<CardObject>();
                             //// set image
                             Image image = go.GetComponent<Image>();
-                            // Texture2D tex = Resources.Load<Texture2D>(val_str +Shapes[shapeId]);
                             var sprite1 =Resources.Load <Sprite>("red_back" ); // set cards pic
                             image.sprite =sprite1;
-                            // card.enabled =true; //////////////????????????????
                             card.isShared=false;
 
                             this.My3OpenCards[0].transform.SetParent(My_open_trans);
@@ -317,19 +285,10 @@ public void MyTurn(){
                 else if(deckCleaned){
                     StartCoroutine(holdAndResume(gameHandler.PcPlayer, value , shape));
                 }
-                
-
             }
-
-
-            
-
-
         }
 
     }
 }
-
-
 
 }

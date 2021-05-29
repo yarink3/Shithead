@@ -96,7 +96,7 @@ public class Player : MonoBehaviour
 
         yield return new WaitForSeconds(1);
 
-        if(p.MyCards.Count==0 && p.My3CloseCards.Count==0){
+        if(gameHandler.gameStatus=="started" && p.MyCards.Count==0 && p.My3CloseCards.Count==0){
             StartCoroutine( p.playerWonCorrutine(p));
             yield return new WaitForSeconds(0);
 
@@ -126,14 +126,14 @@ public class Player : MonoBehaviour
             image.sprite =sprite1;
 
 
-            if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
-                //player won
+            // if(this.MyCards.Count==0 && this.My3CloseCards.Count==0){
+            //     //player won
 
-                StartCoroutine( this.playerWonCorrutine(this));
-                yield return new WaitForSeconds(0);
+            //     StartCoroutine( this.playerWonCorrutine(this));
+            //     yield return new WaitForSeconds(0);
 
-            }
-            else if(nextPlayer.username=="Pc" ){
+            // }
+            if(nextPlayer.username=="Pc" ){
                 gameHandler.PcPlayer.MyTurn();
             }
         }
@@ -222,12 +222,13 @@ public class Player : MonoBehaviour
 
      public IEnumerator playerWonCorrutine(Player p)
     {
+        gameHandler.gameStatus="finished";
         if(p.username=="Player"){
             gameHandler.WinAudio.Play();
         }
 
         yield return new WaitForSeconds(1);
-        gameHandler.gameStatus="finished";
+        
         
 
         if(p.username=="Player"){

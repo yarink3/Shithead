@@ -40,6 +40,7 @@ public class Popup : MonoBehaviour
             gameHandler.gameStatus = "started";
             Scene scene = SceneManager.GetActiveScene();
             SceneManager.LoadScene(scene.name);
+            Debug.Log(scene.name);
             
         }
         else if( gameHandler.gameStatus=="holdExit"){

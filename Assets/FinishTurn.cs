@@ -12,6 +12,7 @@ public class FinishTurn : MonoBehaviour
 	public GameHandler gameHandler = null;
     public AudioSource StartAudio ;
 
+	
 	public FinishTurn(){
 
 	}
@@ -111,6 +112,14 @@ public class FinishTurn : MonoBehaviour
 
 			);
 		
+	}
+
+	public void ShowRules(){
+		
+		gameHandler.ShowRules();
+	}
+	public void HideRules(){
+		gameHandler.HideRules()	;
 	}
 
 

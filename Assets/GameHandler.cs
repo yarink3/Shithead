@@ -18,6 +18,7 @@ public class GameHandler : MonoBehaviour,IDropHandler
     public int turnId = 0; 
     public AudioSource LayCard;
     public AudioSource WinAudio;
+	 [SerializeField] GameObject ScrollRulesObj;
 
     
     
@@ -39,7 +40,13 @@ public class GameHandler : MonoBehaviour,IDropHandler
         }
     }
 
-
+    public void ShowRules(){
+		
+		this.ScrollRulesObj.SetActive(true);
+	}
+	public void HideRules(){
+		this.ScrollRulesObj.SetActive(false);
+	}
     void Start()
     {
        

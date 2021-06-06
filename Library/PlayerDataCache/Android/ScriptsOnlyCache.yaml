@@ -28,6 +28,8 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.HorizontalLayoutGroup
     - UnityEngine.UI.Image
     - UnityEngine.UI.LayoutElement
+    - UnityEngine.UI.Mask
+    - UnityEngine.UI.ScrollRect
     - UnityEngine.UI.Text
   sceneClasses:
     Assets/Scenes/SampleScene 1.unity:
@@ -74,9 +76,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2218}
     - Class: 114
+      Script: {instanceID: 2364}
+    - Class: 114
       Script: {instanceID: 2366}
     - Class: 114
       Script: {instanceID: 2480}
+    - Class: 114
+      Script: {instanceID: 2560}
     - Class: 114
       Script: {instanceID: 2644}
     - Class: 114
@@ -514,7 +520,7 @@ ScriptsOnlyBuild:
     className: TestResultRendererCallback
   - hash:
       serializedVersion: 2
-      Hash: 4cd9d61d501065b5d01eac00b334ac70
+      Hash: 0ebe6062e6d5e944e1b265a53bf487f2
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameHandler

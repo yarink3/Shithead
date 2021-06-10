@@ -110,8 +110,8 @@ extern void Player_getAllCardsFromDeck_m2371DD6DCB3A9CA2938969A60E1035AA7BDDC7CC
 extern void Player_waitAndPlayAgain_m54C1757481A5F6492604C17FD61760C7BCFA8942 (void);
 // 0x00000031 System.Collections.IEnumerator Player::holdAndResume(Player,System.Int32,System.String)
 extern void Player_holdAndResume_m4838E4AE6E73D05F52A50E7B38C2BA4736B2CF58 (void);
-// 0x00000032 System.Void Player::closeCardClicked(Player,CardObject,UnityEngine.GameObject)
-extern void Player_closeCardClicked_mACE70D68FD8E3C50221B5B0A5CC0107B99BD3892 (void);
+// 0x00000032 System.Void Player::closeCardClicked(Player,UnityEngine.GameObject)
+extern void Player_closeCardClicked_m1CE04229D6E67F683952F96E1CBEB54660DD563C (void);
 // 0x00000033 System.Collections.IEnumerator Player::playerWonCorrutine(Player)
 extern void Player_playerWonCorrutine_m7234C78716D1AA42C4495FB1BE2BE2F4262FE015 (void);
 // 0x00000034 System.Void Player::SortMycards()
@@ -253,7 +253,7 @@ static Il2CppMethodPointer s_methodPointers[95] =
 	Player_getAllCardsFromDeck_m2371DD6DCB3A9CA2938969A60E1035AA7BDDC7CC,
 	Player_waitAndPlayAgain_m54C1757481A5F6492604C17FD61760C7BCFA8942,
 	Player_holdAndResume_m4838E4AE6E73D05F52A50E7B38C2BA4736B2CF58,
-	Player_closeCardClicked_mACE70D68FD8E3C50221B5B0A5CC0107B99BD3892,
+	Player_closeCardClicked_m1CE04229D6E67F683952F96E1CBEB54660DD563C,
 	Player_playerWonCorrutine_m7234C78716D1AA42C4495FB1BE2BE2F4262FE015,
 	Player_SortMycards_m0BC98284EC2856A25FBE2EF81EF1810E238C7EBB,
 	Player__ctor_mDE8EB5B351975D4E7E24DE341B8B49B8A29CC2B7,
@@ -351,7 +351,7 @@ static const int32_t s_InvokerIndices[95] =
 	940,
 	756,
 	308,
-	395,
+	616,
 	756,
 	1097,
 	1097,

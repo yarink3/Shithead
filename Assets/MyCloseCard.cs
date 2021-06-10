@@ -12,8 +12,9 @@ public class MyCloseCard : MonoBehaviour , IDropHandler
     public CardObject OpenCardOnMe = null;
     
     public void onClick(){
-        
-        gameHandler.player.closeCardClicked(gameHandler.player,this.OpenCardOnMe,this.gameObject);
+        if(this.OpenCardOnMe ==null){
+            gameHandler.player.closeCardClicked(gameHandler.player,this.gameObject);
+        }
 
     }
 
@@ -21,7 +22,7 @@ public class MyCloseCard : MonoBehaviour , IDropHandler
         gameHandler.LayCard.Play();
         CardObject card= eventData.pointerDrag.GetComponent<CardObject>();
        
-        if(card!=null && !card.applied){
+        if(card!=null && !card.applied && !card.isShared){
             UserPlayer user = gameHandler.player;
 
             if(OpenCardOnMe==null){

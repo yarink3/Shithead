@@ -4712,8 +4712,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void CloseDeckObject_setup_m7A8DA39ED202C5D8C
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PcPlayer_setup_m50052AFF646C5086A7C11D9749F0123D313B1708 (PcPlayer_t0E8A698526B7D6D69D22B8F10495E55F096AD381 * __this, const RuntimeMethod* method);
 // System.Void UserPlayer::setup()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UserPlayer_setup_mF0883E026C8B07BD542798238F5D120FFEF5409B (UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * __this, const RuntimeMethod* method);
-// System.Void Player::closeCardClicked(Player,CardObject,UnityEngine.GameObject)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_mACE70D68FD8E3C50221B5B0A5CC0107B99BD3892 (Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * __this, Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * ___currPlayer0, CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * ___OpenCardOnMe1, GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___closeCardObject2, const RuntimeMethod* method);
+// System.Void Player::closeCardClicked(Player,UnityEngine.GameObject)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_m1CE04229D6E67F683952F96E1CBEB54660DD563C (Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * __this, Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * ___currPlayer0, GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___closeCardObject1, const RuntimeMethod* method);
 // System.Void Player::.ctor()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player__ctor_mDE8EB5B351975D4E7E24DE341B8B49B8A29CC2B7 (Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * __this, const RuntimeMethod* method);
 // System.Void System.Collections.Generic.List`1<UnityEngine.GameObject>::.ctor(System.Collections.Generic.IEnumerable`1<!0>)
@@ -6916,19 +6916,39 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameHandler_Start_m78B61BE18B716B2039EAE
 // System.Void MyCloseCard::onClick()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MyCloseCard_onClick_m9474A1D7A7D8351F1A7217C7CCBBE88F1EC26644 (MyCloseCard_t956D9162212823C87E9DD0006EDC56D9CA37B5D9 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
-		// gameHandler.player.closeCardClicked(gameHandler.player,this.OpenCardOnMe,this.gameObject);
-		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_0 = __this->get_gameHandler_4();
-		NullCheck(L_0);
-		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_1 = L_0->get_player_4();
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// if(this.OpenCardOnMe ==null){
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_0 = __this->get_OpenCardOnMe_5();
+		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		bool L_1;
+		L_1 = Object_op_Equality_mEE9EC7EB5C7DC3E95B94AB904E1986FC4D566D54(L_0, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
+		if (!L_1)
+		{
+			goto IL_002f;
+		}
+	}
+	{
+		// gameHandler.player.closeCardClicked(gameHandler.player,this.gameObject);
 		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_2 = __this->get_gameHandler_4();
 		NullCheck(L_2);
 		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_3 = L_2->get_player_4();
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_4 = __this->get_OpenCardOnMe_5();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_5;
-		L_5 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
-		NullCheck(L_1);
-		Player_closeCardClicked_mACE70D68FD8E3C50221B5B0A5CC0107B99BD3892(L_1, L_3, L_4, L_5, /*hidden argument*/NULL);
+		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_4 = __this->get_gameHandler_4();
+		NullCheck(L_4);
+		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_5 = L_4->get_player_4();
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_6;
+		L_6 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
+		NullCheck(L_3);
+		Player_closeCardClicked_m1CE04229D6E67F683952F96E1CBEB54660DD563C(L_3, L_5, L_6, /*hidden argument*/NULL);
+	}
+
+IL_002f:
+	{
 		// }
 		return;
 	}
@@ -6964,14 +6984,14 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MyCloseCard_OnDrop_m8542805FE89D6EE660B5
 		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_4;
 		L_4 = GameObject_GetComponent_TisCardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10_m89B2DCCF185DAD874C88C3F23EA3153690D42CAA(L_3, /*hidden argument*/GameObject_GetComponent_TisCardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10_m89B2DCCF185DAD874C88C3F23EA3153690D42CAA_RuntimeMethod_var);
 		V_0 = L_4;
-		// if(card!=null && !card.applied){
+		// if(card!=null && !card.applied && !card.isShared){
 		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_5 = V_0;
 		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
 		bool L_6;
 		L_6 = Object_op_Inequality_mE1F187520BD83FB7D86A6D850710C4D42B864E90(L_5, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
 		if (!L_6)
 		{
-			goto IL_00e6;
+			goto IL_00f1;
 		}
 	}
 	{
@@ -6980,123 +7000,132 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MyCloseCard_OnDrop_m8542805FE89D6EE660B5
 		bool L_8 = L_7->get_applied_8();
 		if (L_8)
 		{
-			goto IL_00e6;
+			goto IL_00f1;
+		}
+	}
+	{
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_9 = V_0;
+		NullCheck(L_9);
+		bool L_10 = L_9->get_isShared_9();
+		if (L_10)
+		{
+			goto IL_00f1;
 		}
 	}
 	{
 		// UserPlayer user = gameHandler.player;
-		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_9 = __this->get_gameHandler_4();
-		NullCheck(L_9);
-		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_10 = L_9->get_player_4();
-		V_1 = L_10;
+		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_11 = __this->get_gameHandler_4();
+		NullCheck(L_11);
+		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_12 = L_11->get_player_4();
+		V_1 = L_12;
 		// if(OpenCardOnMe==null){
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_11 = __this->get_OpenCardOnMe_5();
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_13 = __this->get_OpenCardOnMe_5();
 		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
-		bool L_12;
-		L_12 = Object_op_Equality_mEE9EC7EB5C7DC3E95B94AB904E1986FC4D566D54(L_11, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
-		if (!L_12)
+		bool L_14;
+		L_14 = Object_op_Equality_mEE9EC7EB5C7DC3E95B94AB904E1986FC4D566D54(L_13, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
+		if (!L_14)
 		{
-			goto IL_009f;
+			goto IL_00aa;
 		}
 	}
 	{
 		// card.transform.SetParent(this.transform);
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_13 = V_0;
-		NullCheck(L_13);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_14;
-		L_14 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_13, /*hidden argument*/NULL);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_15;
-		L_15 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(__this, /*hidden argument*/NULL);
-		NullCheck(L_14);
-		Transform_SetParent_m24E34EBEF76528C99AFA017F157EE8B3E3116B1E(L_14, L_15, /*hidden argument*/NULL);
-		// card.parentToReturnTo=(this.transform);
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_16 = V_0;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_15 = V_0;
+		NullCheck(L_15);
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_16;
+		L_16 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_15, /*hidden argument*/NULL);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_17;
 		L_17 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(__this, /*hidden argument*/NULL);
 		NullCheck(L_16);
-		L_16->set_parentToReturnTo_6(L_17);
-		// OpenCardOnMe=card;
+		Transform_SetParent_m24E34EBEF76528C99AFA017F157EE8B3E3116B1E(L_16, L_17, /*hidden argument*/NULL);
+		// card.parentToReturnTo=(this.transform);
 		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_18 = V_0;
-		__this->set_OpenCardOnMe_5(L_18);
-		// OpenCardOnMe.isShared = true;
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_19 = __this->get_OpenCardOnMe_5();
-		NullCheck(L_19);
-		L_19->set_isShared_9((bool)1);
-		// GameObject go=card.gameObject;
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_19;
+		L_19 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(__this, /*hidden argument*/NULL);
+		NullCheck(L_18);
+		L_18->set_parentToReturnTo_6(L_19);
+		// OpenCardOnMe=card;
 		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_20 = V_0;
-		NullCheck(L_20);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_21;
-		L_21 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_20, /*hidden argument*/NULL);
-		V_2 = L_21;
-		// user.My3OpenCards.Add(go);
-		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_22 = V_1;
+		__this->set_OpenCardOnMe_5(L_20);
+		// OpenCardOnMe.isShared = true;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_21 = __this->get_OpenCardOnMe_5();
+		NullCheck(L_21);
+		L_21->set_isShared_9((bool)1);
+		// GameObject go=card.gameObject;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_22 = V_0;
 		NullCheck(L_22);
-		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_23 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_22)->get_My3OpenCards_6();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_24 = V_2;
-		NullCheck(L_23);
-		List_1_Add_m3DD76DE838FA83DF972E0486A296345EB3A7DDF3(L_23, L_24, /*hidden argument*/List_1_Add_m3DD76DE838FA83DF972E0486A296345EB3A7DDF3_RuntimeMethod_var);
-		// user.MyCards.Remove(go);
-		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_25 = V_1;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_23;
+		L_23 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(L_22, /*hidden argument*/NULL);
+		V_2 = L_23;
+		// user.My3OpenCards.Add(go);
+		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_24 = V_1;
+		NullCheck(L_24);
+		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_25 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_24)->get_My3OpenCards_6();
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_26 = V_2;
 		NullCheck(L_25);
-		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_26 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_25)->get_MyCards_5();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_27 = V_2;
-		NullCheck(L_26);
-		bool L_28;
-		L_28 = List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7(L_26, L_27, /*hidden argument*/List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7_RuntimeMethod_var);
+		List_1_Add_m3DD76DE838FA83DF972E0486A296345EB3A7DDF3(L_25, L_26, /*hidden argument*/List_1_Add_m3DD76DE838FA83DF972E0486A296345EB3A7DDF3_RuntimeMethod_var);
+		// user.MyCards.Remove(go);
+		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_27 = V_1;
+		NullCheck(L_27);
+		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_28 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_27)->get_MyCards_5();
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_29 = V_2;
+		NullCheck(L_28);
+		bool L_30;
+		L_30 = List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7(L_28, L_29, /*hidden argument*/List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7_RuntimeMethod_var);
 		// }
-		goto IL_00c6;
+		goto IL_00d1;
 	}
 
-IL_009f:
+IL_00aa:
 	{
 		// card.transform.SetParent(user.MyOpenCardsArea.transform);
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_29 = V_0;
-		NullCheck(L_29);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_30;
-		L_30 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_29, /*hidden argument*/NULL);
-		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_31 = V_1;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_31 = V_0;
 		NullCheck(L_31);
-		DropZone_tFE81561F05F4C5934ECC0883DDFFEC9DCD968E62 * L_32 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_31)->get_MyOpenCardsArea_8();
-		NullCheck(L_32);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_33;
-		L_33 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_32, /*hidden argument*/NULL);
-		NullCheck(L_30);
-		Transform_SetParent_m24E34EBEF76528C99AFA017F157EE8B3E3116B1E(L_30, L_33, /*hidden argument*/NULL);
-		// card.parentToReturnTo = user.MyOpenCardsArea.transform;
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_34 = V_0;
-		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_35 = V_1;
-		NullCheck(L_35);
-		DropZone_tFE81561F05F4C5934ECC0883DDFFEC9DCD968E62 * L_36 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_35)->get_MyOpenCardsArea_8();
-		NullCheck(L_36);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_37;
-		L_37 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_36, /*hidden argument*/NULL);
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_32;
+		L_32 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_31, /*hidden argument*/NULL);
+		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_33 = V_1;
+		NullCheck(L_33);
+		DropZone_tFE81561F05F4C5934ECC0883DDFFEC9DCD968E62 * L_34 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_33)->get_MyOpenCardsArea_8();
 		NullCheck(L_34);
-		L_34->set_parentToReturnTo_6(L_37);
-	}
-
-IL_00c6:
-	{
-		// card.transform.localPosition = Vector3.zero;
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_38 = V_0;
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_35;
+		L_35 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_34, /*hidden argument*/NULL);
+		NullCheck(L_32);
+		Transform_SetParent_m24E34EBEF76528C99AFA017F157EE8B3E3116B1E(L_32, L_35, /*hidden argument*/NULL);
+		// card.parentToReturnTo = user.MyOpenCardsArea.transform;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_36 = V_0;
+		UserPlayer_tD226DA6CEDDFA512953CC664B3E54C6B8C39DEB6 * L_37 = V_1;
+		NullCheck(L_37);
+		DropZone_tFE81561F05F4C5934ECC0883DDFFEC9DCD968E62 * L_38 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)L_37)->get_MyOpenCardsArea_8();
 		NullCheck(L_38);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_39;
 		L_39 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_38, /*hidden argument*/NULL);
-		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_40;
-		L_40 = Vector3_get_zero_m1A8F7993167785F750B6B01762D22C2597C84EF6(/*hidden argument*/NULL);
-		NullCheck(L_39);
-		Transform_set_localPosition_m2A2B0033EF079077FAE7C65196078EAF5D041AFC(L_39, L_40, /*hidden argument*/NULL);
-		// card.transform.localRotation = Quaternion.identity;
-		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_41 = V_0;
-		NullCheck(L_41);
-		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_42;
-		L_42 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_41, /*hidden argument*/NULL);
-		Quaternion_t6D28618CF65156D4A0AD747370DDFD0C514A31B4  L_43;
-		L_43 = Quaternion_get_identity_mF2E565DBCE793A1AE6208056D42CA7C59D83A702(/*hidden argument*/NULL);
-		NullCheck(L_42);
-		Transform_set_localRotation_m1A9101457EC4653AFC93FCC4065A29F2C78FA62C(L_42, L_43, /*hidden argument*/NULL);
+		NullCheck(L_36);
+		L_36->set_parentToReturnTo_6(L_39);
 	}
 
-IL_00e6:
+IL_00d1:
+	{
+		// card.transform.localPosition = Vector3.zero;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_40 = V_0;
+		NullCheck(L_40);
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_41;
+		L_41 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_40, /*hidden argument*/NULL);
+		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_42;
+		L_42 = Vector3_get_zero_m1A8F7993167785F750B6B01762D22C2597C84EF6(/*hidden argument*/NULL);
+		NullCheck(L_41);
+		Transform_set_localPosition_m2A2B0033EF079077FAE7C65196078EAF5D041AFC(L_41, L_42, /*hidden argument*/NULL);
+		// card.transform.localRotation = Quaternion.identity;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_43 = V_0;
+		NullCheck(L_43);
+		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_44;
+		L_44 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(L_43, /*hidden argument*/NULL);
+		Quaternion_t6D28618CF65156D4A0AD747370DDFD0C514A31B4  L_45;
+		L_45 = Quaternion_get_identity_mF2E565DBCE793A1AE6208056D42CA7C59D83A702(/*hidden argument*/NULL);
+		NullCheck(L_44);
+		Transform_set_localRotation_m1A9101457EC4653AFC93FCC4065A29F2C78FA62C(L_44, L_45, /*hidden argument*/NULL);
+	}
+
+IL_00f1:
 	{
 		// }
 		return;
@@ -7835,7 +7864,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PcPlayer_MyTurn_mAE715F699AC13B423064997
 		L_2 = String_op_Equality_m2B91EE68355F142F67095973D32EB5828B7B73CB(L_1, _stringLiteral008F6E1BE2B28B633406A8328A0C886C24DD0A51, /*hidden argument*/NULL);
 		if (!L_2)
 		{
-			goto IL_0550;
+			goto IL_054f;
 		}
 	}
 	{
@@ -7879,7 +7908,7 @@ IL_004c:
 		L_9 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_8, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if (L_9)
 		{
-			goto IL_008c;
+			goto IL_008b;
 		}
 	}
 	{
@@ -7891,7 +7920,7 @@ IL_004c:
 		int32_t L_12;
 		L_12 = Random_Range_m4B3A0037ACA057F33C94508F908546B9317D996A(0, L_11, /*hidden argument*/NULL);
 		V_4 = L_12;
-		// this.closeCardClicked( gameHandler.PcPlayer,null,My3CloseCards[index]);
+		// this.closeCardClicked( gameHandler.PcPlayer,My3CloseCards[index]);
 		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_13 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_gameHandler_9();
 		NullCheck(L_13);
 		PcPlayer_t0E8A698526B7D6D69D22B8F10495E55F096AD381 * L_14 = L_13->get_PcPlayer_5();
@@ -7900,12 +7929,12 @@ IL_004c:
 		NullCheck(L_15);
 		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_17;
 		L_17 = List_1_get_Item_m1E85E7CDA3459102B9FD665388559843378C2B4C_inline(L_15, L_16, /*hidden argument*/List_1_get_Item_m1E85E7CDA3459102B9FD665388559843378C2B4C_RuntimeMethod_var);
-		Player_closeCardClicked_mACE70D68FD8E3C50221B5B0A5CC0107B99BD3892(__this, L_14, (CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 *)NULL, L_17, /*hidden argument*/NULL);
+		Player_closeCardClicked_m1CE04229D6E67F683952F96E1CBEB54660DD563C(__this, L_14, L_17, /*hidden argument*/NULL);
 		// return;
 		return;
 	}
 
-IL_008c:
+IL_008b:
 	{
 		// List<CardObject> localCardsToApply=new List<CardObject>() {MyCards[0].GetComponent<CardObject>()};
 		List_1_t99BD54F7ACCB79D527E6B4DEECC2E5A5BAB86D9F * L_18 = (List_1_t99BD54F7ACCB79D527E6B4DEECC2E5A5BAB86D9F *)il2cpp_codegen_object_new(List_1_t99BD54F7ACCB79D527E6B4DEECC2E5A5BAB86D9F_il2cpp_TypeInfo_var);
@@ -7923,10 +7952,10 @@ IL_008c:
 		V_5 = L_19;
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		V_6 = 0;
-		goto IL_0176;
+		goto IL_0175;
 	}
 
-IL_00b2:
+IL_00b1:
 	{
 		// int currVal=MyCards[i].GetComponent<CardObject>().value;
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_23 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_MyCards_5();
@@ -7944,62 +7973,62 @@ IL_00b2:
 		int32_t L_28 = V_7;
 		if ((!(((uint32_t)L_28) == ((uint32_t)3))))
 		{
-			goto IL_00d7;
+			goto IL_00d6;
 		}
 	}
 	{
 		// has3=true;
 		V_1 = (bool)1;
 		// }
-		goto IL_0170;
+		goto IL_016f;
 	}
 
-IL_00d7:
+IL_00d6:
 	{
 		// else if(currVal==2){
 		int32_t L_29 = V_7;
 		if ((!(((uint32_t)L_29) == ((uint32_t)2))))
 		{
-			goto IL_00e3;
+			goto IL_00e2;
 		}
 	}
 	{
 		// has2=true;
 		V_2 = (bool)1;
 		// }
-		goto IL_0170;
+		goto IL_016f;
 	}
 
-IL_00e3:
+IL_00e2:
 	{
 		// else if(currVal==10){
 		int32_t L_30 = V_7;
 		if ((!(((uint32_t)L_30) == ((uint32_t)((int32_t)10)))))
 		{
-			goto IL_00f0;
+			goto IL_00ef;
 		}
 	}
 	{
 		// has10=true;
 		V_3 = (bool)1;
 		// }
-		goto IL_0170;
+		goto IL_016f;
 	}
 
-IL_00f0:
+IL_00ef:
 	{
 		// else if(currVal > 3 && (i==0 || currVal < bestVal) && gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue,currVal) ){
 		int32_t L_31 = V_7;
 		if ((((int32_t)L_31) <= ((int32_t)3)))
 		{
-			goto IL_0152;
+			goto IL_0151;
 		}
 	}
 	{
 		int32_t L_32 = V_6;
 		if (!L_32)
 		{
-			goto IL_00fe;
+			goto IL_00fd;
 		}
 	}
 	{
@@ -8007,11 +8036,11 @@ IL_00f0:
 		int32_t L_34 = V_0;
 		if ((((int32_t)L_33) >= ((int32_t)L_34)))
 		{
-			goto IL_0152;
+			goto IL_0151;
 		}
 	}
 
-IL_00fe:
+IL_00fd:
 	{
 		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_35 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_gameHandler_9();
 		NullCheck(L_35);
@@ -8027,7 +8056,7 @@ IL_00fe:
 		L_41 = TempOpenDeckObject_isLegal_mDE7DAE199AEAA63C0354E33B3C77FF74E8B9F14D(L_36, L_39, L_40, /*hidden argument*/NULL);
 		if (!L_41)
 		{
-			goto IL_0152;
+			goto IL_0151;
 		}
 	}
 	{
@@ -8056,17 +8085,17 @@ IL_00fe:
 		int32_t L_50 = L_49->get_value_4();
 		V_0 = L_50;
 		// }
-		goto IL_0170;
+		goto IL_016f;
 	}
 
-IL_0152:
+IL_0151:
 	{
 		// else if(currVal == bestVal){
 		int32_t L_51 = V_7;
 		int32_t L_52 = V_0;
 		if ((!(((uint32_t)L_51) == ((uint32_t)L_52))))
 		{
-			goto IL_0170;
+			goto IL_016f;
 		}
 	}
 	{
@@ -8084,14 +8113,14 @@ IL_0152:
 		List_1_Add_m1940C72EBF94A2B95C91237CE37B2A4D68FE499B(L_53, L_57, /*hidden argument*/List_1_Add_m1940C72EBF94A2B95C91237CE37B2A4D68FE499B_RuntimeMethod_var);
 	}
 
-IL_0170:
+IL_016f:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_58 = V_6;
 		V_6 = ((int32_t)il2cpp_codegen_add((int32_t)L_58, (int32_t)1));
 	}
 
-IL_0176:
+IL_0175:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_59 = V_6;
@@ -8101,7 +8130,7 @@ IL_0176:
 		L_61 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_60, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_59) < ((int32_t)L_61)))
 		{
-			goto IL_00b2;
+			goto IL_00b1;
 		}
 	}
 	{
@@ -8120,24 +8149,24 @@ IL_0176:
 		L_68 = TempOpenDeckObject_isLegal_mDE7DAE199AEAA63C0354E33B3C77FF74E8B9F14D(L_63, L_66, L_67, /*hidden argument*/NULL);
 		if (!L_68)
 		{
-			goto IL_01b3;
+			goto IL_01b2;
 		}
 	}
 	{
 		int32_t L_69 = V_0;
 		if ((!(((uint32_t)L_69) == ((uint32_t)((int32_t)15)))))
 		{
-			goto IL_02d2;
+			goto IL_02d1;
 		}
 	}
 
-IL_01b3:
+IL_01b2:
 	{
 		// if(has3){
 		bool L_70 = V_1;
 		if (!L_70)
 		{
-			goto IL_0214;
+			goto IL_0213;
 		}
 	}
 	{
@@ -8147,10 +8176,10 @@ IL_01b3:
 		List_1_Clear_m0B317973BFAE34ADA1679AE28865CA37CD8F442C(L_71, /*hidden argument*/List_1_Clear_m0B317973BFAE34ADA1679AE28865CA37CD8F442C_RuntimeMethod_var);
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		V_8 = 0;
-		goto IL_0200;
+		goto IL_01ff;
 	}
 
-IL_01c2:
+IL_01c1:
 	{
 		// CardObject currCard=MyCards[i].GetComponent<CardObject>();
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_72 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_MyCards_5();
@@ -8169,7 +8198,7 @@ IL_01c2:
 		// if(currVal==3){
 		if ((!(((uint32_t)L_77) == ((uint32_t)3))))
 		{
-			goto IL_01fa;
+			goto IL_01f9;
 		}
 	}
 	{
@@ -8185,18 +8214,18 @@ IL_01c2:
 		L_81 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_80, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_81) >= ((int32_t)3)))
 		{
-			goto IL_02d2;
+			goto IL_02d1;
 		}
 	}
 
-IL_01fa:
+IL_01f9:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_82 = V_8;
 		V_8 = ((int32_t)il2cpp_codegen_add((int32_t)L_82, (int32_t)1));
 	}
 
-IL_0200:
+IL_01ff:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_83 = V_8;
@@ -8206,21 +8235,21 @@ IL_0200:
 		L_85 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_84, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_83) < ((int32_t)L_85)))
 		{
-			goto IL_01c2;
+			goto IL_01c1;
 		}
 	}
 	{
 		// }
-		goto IL_02d2;
+		goto IL_02d1;
 	}
 
-IL_0214:
+IL_0213:
 	{
 		// else if(has2){
 		bool L_86 = V_2;
 		if (!L_86)
 		{
-			goto IL_026f;
+			goto IL_026e;
 		}
 	}
 	{
@@ -8230,10 +8259,10 @@ IL_0214:
 		List_1_Clear_m0B317973BFAE34ADA1679AE28865CA37CD8F442C(L_87, /*hidden argument*/List_1_Clear_m0B317973BFAE34ADA1679AE28865CA37CD8F442C_RuntimeMethod_var);
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		V_10 = 0;
-		goto IL_025e;
+		goto IL_025d;
 	}
 
-IL_0223:
+IL_0222:
 	{
 		// CardObject currCard=MyCards[i].GetComponent<CardObject>();
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_88 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_MyCards_5();
@@ -8252,7 +8281,7 @@ IL_0223:
 		// if(currVal==2){
 		if ((!(((uint32_t)L_93) == ((uint32_t)2))))
 		{
-			goto IL_0258;
+			goto IL_0257;
 		}
 	}
 	{
@@ -8268,18 +8297,18 @@ IL_0223:
 		L_97 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_96, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_97) >= ((int32_t)3)))
 		{
-			goto IL_02d2;
+			goto IL_02d1;
 		}
 	}
 
-IL_0258:
+IL_0257:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_98 = V_10;
 		V_10 = ((int32_t)il2cpp_codegen_add((int32_t)L_98, (int32_t)1));
 	}
 
-IL_025e:
+IL_025d:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_99 = V_10;
@@ -8289,21 +8318,21 @@ IL_025e:
 		L_101 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_100, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_99) < ((int32_t)L_101)))
 		{
-			goto IL_0223;
+			goto IL_0222;
 		}
 	}
 	{
 		// }
-		goto IL_02d2;
+		goto IL_02d1;
 	}
 
-IL_026f:
+IL_026e:
 	{
 		// else if(has10){
 		bool L_102 = V_3;
 		if (!L_102)
 		{
-			goto IL_02cb;
+			goto IL_02ca;
 		}
 	}
 	{
@@ -8313,10 +8342,10 @@ IL_026f:
 		List_1_Clear_m0B317973BFAE34ADA1679AE28865CA37CD8F442C(L_103, /*hidden argument*/List_1_Clear_m0B317973BFAE34ADA1679AE28865CA37CD8F442C_RuntimeMethod_var);
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		V_12 = 0;
-		goto IL_02ba;
+		goto IL_02b9;
 	}
 
-IL_027e:
+IL_027d:
 	{
 		// CardObject currCard=MyCards[i].GetComponent<CardObject>();
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_104 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_MyCards_5();
@@ -8335,7 +8364,7 @@ IL_027e:
 		// if(currVal==10){
 		if ((!(((uint32_t)L_109) == ((uint32_t)((int32_t)10)))))
 		{
-			goto IL_02b4;
+			goto IL_02b3;
 		}
 	}
 	{
@@ -8351,18 +8380,18 @@ IL_027e:
 		L_113 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_112, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_113) >= ((int32_t)3)))
 		{
-			goto IL_02d2;
+			goto IL_02d1;
 		}
 	}
 
-IL_02b4:
+IL_02b3:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_114 = V_12;
 		V_12 = ((int32_t)il2cpp_codegen_add((int32_t)L_114, (int32_t)1));
 	}
 
-IL_02ba:
+IL_02b9:
 	{
 		// for (int i=0 ;i<MyCards.Count  ; ++i){
 		int32_t L_115 = V_12;
@@ -8372,21 +8401,21 @@ IL_02ba:
 		L_117 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_116, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_115) < ((int32_t)L_117)))
 		{
-			goto IL_027e;
+			goto IL_027d;
 		}
 	}
 	{
 		// }
-		goto IL_02d2;
+		goto IL_02d1;
 	}
 
-IL_02cb:
+IL_02ca:
 	{
 		// getAllCardsFromDeck(this);
 		Player_getAllCardsFromDeck_m2371DD6DCB3A9CA2938969A60E1035AA7BDDC7CC(__this, __this, /*hidden argument*/NULL);
 	}
 
-IL_02d2:
+IL_02d1:
 	{
 		// if(gameHandler.TempOpenDeck.isLegal(gameHandler.TempOpenDeck.realLastValue , localCardsToApply[0].value)){
 		GameHandler_t066F95A2003A713EF6F356429B2E18DF678F8A26 * L_118 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_gameHandler_9();
@@ -8408,7 +8437,7 @@ IL_02d2:
 		L_126 = TempOpenDeckObject_isLegal_mDE7DAE199AEAA63C0354E33B3C77FF74E8B9F14D(L_119, L_122, L_125, /*hidden argument*/NULL);
 		if (!L_126)
 		{
-			goto IL_0550;
+			goto IL_054f;
 		}
 	}
 	{
@@ -8440,10 +8469,10 @@ IL_02d2:
 		int32_t L_136;
 		L_136 = List_1_get_Count_mC74A77304718F4FAB293EADDD3CF0FB9F730C351_inline(L_135, /*hidden argument*/List_1_get_Count_mC74A77304718F4FAB293EADDD3CF0FB9F730C351_RuntimeMethod_var);
 		V_18 = ((int32_t)il2cpp_codegen_subtract((int32_t)L_136, (int32_t)1));
-		goto IL_03f9;
+		goto IL_03f8;
 	}
 
-IL_033b:
+IL_033a:
 	{
 		// CardObject card= localCardsToApply[i];
 		List_1_t99BD54F7ACCB79D527E6B4DEECC2E5A5BAB86D9F * L_137 = V_5;
@@ -8540,13 +8569,13 @@ IL_033b:
 		V_18 = ((int32_t)il2cpp_codegen_subtract((int32_t)L_172, (int32_t)1));
 	}
 
-IL_03f9:
+IL_03f8:
 	{
 		// for(int i=localCardsToApply.Count -1; i>=0;--i){
 		int32_t L_173 = V_18;
 		if ((((int32_t)L_173) >= ((int32_t)0)))
 		{
-			goto IL_033b;
+			goto IL_033a;
 		}
 	}
 	{
@@ -8567,7 +8596,7 @@ IL_03f9:
 		L_180 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_179, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((((int32_t)L_180) >= ((int32_t)3)))
 		{
-			goto IL_0444;
+			goto IL_0443;
 		}
 	}
 	{
@@ -8583,7 +8612,7 @@ IL_03f9:
 		CloseDeckObject_pullCardsToUser_m3188ADB1A83A8EC24E0A4ADF310728844FDFFA0F(L_182, __this, ((int32_t)il2cpp_codegen_subtract((int32_t)3, (int32_t)L_184)), (bool)1, /*hidden argument*/NULL);
 	}
 
-IL_0444:
+IL_0443:
 	{
 		// if(this.MyCards.Count==0){
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_185 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_MyCards_5();
@@ -8592,7 +8621,7 @@ IL_0444:
 		L_186 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_185, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if (L_186)
 		{
-			goto IL_051d;
+			goto IL_051c;
 		}
 	}
 	{
@@ -8603,16 +8632,16 @@ IL_0444:
 		L_188 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_187, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if ((!(((uint32_t)L_188) == ((uint32_t)3))))
 		{
-			goto IL_04f5;
+			goto IL_04f4;
 		}
 	}
 	{
 		// for(int i=0; i<3 ; i++){
 		V_21 = 0;
-		goto IL_04ed;
+		goto IL_04ec;
 	}
 
-IL_046d:
+IL_046c:
 	{
 		// Transform My_open_trans = this.MyOpenCardsArea.transform;
 		DropZone_tFE81561F05F4C5934ECC0883DDFFEC9DCD968E62 * L_189 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_MyOpenCardsArea_8();
@@ -8677,17 +8706,17 @@ IL_046d:
 		V_21 = ((int32_t)il2cpp_codegen_add((int32_t)L_209, (int32_t)1));
 	}
 
-IL_04ed:
+IL_04ec:
 	{
 		// for(int i=0; i<3 ; i++){
 		int32_t L_210 = V_21;
 		if ((((int32_t)L_210) < ((int32_t)3)))
 		{
-			goto IL_046d;
+			goto IL_046c;
 		}
 	}
 
-IL_04f5:
+IL_04f4:
 	{
 		// if(this.My3CloseCards.Count==0 && this.MyCards.Count==0){ // finished shared cards and my cards
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_211 = ((Player_t5689617909B48F7640EA0892D85C92C13CC22C6F *)__this)->get_My3CloseCards_7();
@@ -8696,7 +8725,7 @@ IL_04f5:
 		L_212 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_211, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if (L_212)
 		{
-			goto IL_051d;
+			goto IL_051c;
 		}
 	}
 	{
@@ -8706,7 +8735,7 @@ IL_04f5:
 		L_214 = List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_inline(L_213, /*hidden argument*/List_1_get_Count_m6206A8F48C7A98B9CFC23A13548CB215717573BD_RuntimeMethod_var);
 		if (L_214)
 		{
-			goto IL_051d;
+			goto IL_051c;
 		}
 	}
 	{
@@ -8717,13 +8746,13 @@ IL_04f5:
 		L_216 = MonoBehaviour_StartCoroutine_m3E33706D38B23CDD179E99BAD61E32303E9CC719(__this, L_215, /*hidden argument*/NULL);
 	}
 
-IL_051d:
+IL_051c:
 	{
 		// if(value==8){
 		int32_t L_217 = V_14;
 		if ((!(((uint32_t)L_217) == ((uint32_t)8))))
 		{
-			goto IL_0530;
+			goto IL_052f;
 		}
 	}
 	{
@@ -8736,13 +8765,13 @@ IL_051d:
 		return;
 	}
 
-IL_0530:
+IL_052f:
 	{
 		// else if(deckCleaned){
 		bool L_220 = V_17;
 		if (!L_220)
 		{
-			goto IL_0550;
+			goto IL_054f;
 		}
 	}
 	{
@@ -8758,7 +8787,7 @@ IL_0530:
 		L_226 = MonoBehaviour_StartCoroutine_m3E33706D38B23CDD179E99BAD61E32303E9CC719(__this, L_225, /*hidden argument*/NULL);
 	}
 
-IL_0550:
+IL_054f:
 	{
 		// }
 		return;
@@ -9221,8 +9250,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR RuntimeObject* Player_holdAndResume_m4838E4AE
 		return L_6;
 	}
 }
-// System.Void Player::closeCardClicked(Player,CardObject,UnityEngine.GameObject)
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_mACE70D68FD8E3C50221B5B0A5CC0107B99BD3892 (Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * __this, Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * ___currPlayer0, CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * ___OpenCardOnMe1, GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___closeCardObject2, const RuntimeMethod* method)
+// System.Void Player::closeCardClicked(Player,UnityEngine.GameObject)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_m1CE04229D6E67F683952F96E1CBEB54660DD563C (Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * __this, Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * ___currPlayer0, GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * ___closeCardObject1, const RuntimeMethod* method)
 {
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
@@ -9252,7 +9281,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_mACE70D68FD8E3C5
 	Sprite_t5B10B1178EC2E6F53D33FFD77557F31C08A51ED9 * V_5 = NULL;
 	{
 		// CardObject card = closeCardObject.transform.GetComponent<CardObject>();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_0 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_0 = ___closeCardObject1;
 		NullCheck(L_0);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_1;
 		L_1 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_0, /*hidden argument*/NULL);
@@ -9288,7 +9317,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_mACE70D68FD8E3C5
 	}
 	{
 		// Image image = closeCardObject.transform.GetChild(0).transform.GetComponent<Image>();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_9 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_9 = ___closeCardObject1;
 		NullCheck(L_9);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_10;
 		L_10 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_9, /*hidden argument*/NULL);
@@ -9365,7 +9394,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Player_closeCardClicked_mACE70D68FD8E3C5
 		NullCheck(L_29);
 		Popup_Init1Button_m8AE54A8D024212B737525D3339C9652387BD32AC(L_29, L_32, _stringLiteral42AA1F892DD37A3753AA7D19D1D4B665102BAB65, _stringLiteral1AE348EAFA097AB898941EAFE912D711A407DA10, /*hidden argument*/NULL);
 		// var sprite1 =Resources.Load <Sprite>(closeCardObject.transform.GetChild(0).name); // set cards pic
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_33 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_33 = ___closeCardObject1;
 		NullCheck(L_33);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_34;
 		L_34 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_33, /*hidden argument*/NULL);
@@ -9406,7 +9435,7 @@ IL_00f8:
 		Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * L_43 = ___currPlayer0;
 		NullCheck(L_43);
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_44 = L_43->get_MyCards_5();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_45 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_45 = ___closeCardObject1;
 		NullCheck(L_45);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_46;
 		L_46 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_45, /*hidden argument*/NULL);
@@ -9422,7 +9451,7 @@ IL_00f8:
 		Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * L_49 = ___currPlayer0;
 		NullCheck(L_49);
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_50 = L_49->get_My3CloseCards_7();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_51 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_51 = ___closeCardObject1;
 		NullCheck(L_51);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_52;
 		L_52 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_51, /*hidden argument*/NULL);
@@ -9439,12 +9468,12 @@ IL_00f8:
 		Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * L_56 = ___currPlayer0;
 		NullCheck(L_56);
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_57 = L_56->get_My3CloseCards_7();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_58 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_58 = ___closeCardObject1;
 		NullCheck(L_57);
 		bool L_59;
 		L_59 = List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7(L_57, L_58, /*hidden argument*/List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7_RuntimeMethod_var);
 		// closeCardObject.transform.GetChild(0).SetParent(open_cards_transform);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_60 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_60 = ___closeCardObject1;
 		NullCheck(L_60);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_61;
 		L_61 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_60, /*hidden argument*/NULL);
@@ -9508,7 +9537,7 @@ IL_01ad:
 		NullCheck(L_77);
 		L_77->set_isShared_9((bool)0);
 		// closeCardObject.transform.GetChild(0).SetParent(temp_deck_transform);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_78 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_78 = ___closeCardObject1;
 		NullCheck(L_78);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_79;
 		L_79 = GameObject_get_transform_m16A80BB92B6C8C5AB696E447014D45EDF1E4DE34(L_78, /*hidden argument*/NULL);
@@ -9551,7 +9580,7 @@ IL_01ad:
 		Player_t5689617909B48F7640EA0892D85C92C13CC22C6F * L_93 = ___currPlayer0;
 		NullCheck(L_93);
 		List_1_t6D0A10F47F3440798295D2FFFC6D016477AF38E5 * L_94 = L_93->get_My3CloseCards_7();
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_95 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_95 = ___closeCardObject1;
 		NullCheck(L_94);
 		bool L_96;
 		L_96 = List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7(L_94, L_95, /*hidden argument*/List_1_Remove_mD36BF07C31C1DF947856EFECE89BAF4D6A24DEB7_RuntimeMethod_var);
@@ -9716,7 +9745,7 @@ IL_02d1:
 IL_0304:
 	{
 		// GameObject.Destroy(closeCardObject);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_144 = ___closeCardObject2;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_144 = ___closeCardObject1;
 		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
 		Object_Destroy_m3EEDB6ECD49A541EC826EA8E1C8B599F7AF67D30(L_144, /*hidden argument*/NULL);
 		// if(gameHandler.gameStatus=="started" && currPlayer.MyCards.Count==0 && currPlayer.My3CloseCards.Count==0){

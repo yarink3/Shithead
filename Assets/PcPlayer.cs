@@ -140,7 +140,7 @@ public void MyTurn(){
 
         if(MyCards.Count==0){
             int index=Random.Range(0,My3CloseCards.Count);
-            this.closeCardClicked( gameHandler.PcPlayer,null,My3CloseCards[index]);            
+            this.closeCardClicked( gameHandler.PcPlayer,My3CloseCards[index]);            
             return;
 
         }

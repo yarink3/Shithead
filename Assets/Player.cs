@@ -139,7 +139,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void closeCardClicked(Player currPlayer, CardObject OpenCardOnMe,GameObject closeCardObject){
+    public void closeCardClicked(Player currPlayer, GameObject closeCardObject){
         
         CardObject card = closeCardObject.transform.GetComponent<CardObject>();
         bool deckCleaned=false;

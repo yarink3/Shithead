@@ -12,7 +12,7 @@ public class MyCloseCard : MonoBehaviour , IDropHandler
     public CardObject OpenCardOnMe = null;
     
     public void onClick(){
-        if(this.OpenCardOnMe ==null){
+        if(this.OpenCardOnMe != null){
             gameHandler.player.closeCardClicked(gameHandler.player,this.gameObject);
         }
 

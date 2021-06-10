@@ -6923,11 +6923,11 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void MyCloseCard_onClick_m9474A1D7A7D8351F1A7
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// if(this.OpenCardOnMe ==null){
+		// if(this.OpenCardOnMe != null){
 		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_0 = __this->get_OpenCardOnMe_5();
 		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
 		bool L_1;
-		L_1 = Object_op_Equality_mEE9EC7EB5C7DC3E95B94AB904E1986FC4D566D54(L_0, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
+		L_1 = Object_op_Inequality_mE1F187520BD83FB7D86A6D850710C4D42B864E90(L_0, (Object_tF2F3778131EFF286AF62B7B013A170F95A91571A *)NULL, /*hidden argument*/NULL);
 		if (!L_1)
 		{
 			goto IL_002f;

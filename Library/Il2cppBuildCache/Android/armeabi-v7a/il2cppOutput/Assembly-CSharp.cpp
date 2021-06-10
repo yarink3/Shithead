@@ -6743,6 +6743,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameHandler_OnDrop_m25F35BF1ABDBBE2B9413
 	{
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&GameObject_GetComponent_TisCardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10_m89B2DCCF185DAD874C88C3F23EA3153690D42CAA_RuntimeMethod_var);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral02D469B23640D6FD7AAE4C92B506FBB713B36241);
 		s_Il2CppMethodInitialized = true;
 	}
 	CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * V_0 = NULL;
@@ -6823,6 +6824,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameHandler_OnDrop_m25F35BF1ABDBBE2B9413
 	}
 
 IL_0064:
+	{
+		// if(this.gameStatus=="not started"){
+		String_t* L_22 = __this->get_gameStatus_8();
+		bool L_23;
+		L_23 = String_op_Equality_m2B91EE68355F142F67095973D32EB5828B7B73CB(L_22, _stringLiteral02D469B23640D6FD7AAE4C92B506FBB713B36241, /*hidden argument*/NULL);
+		if (!L_23)
+		{
+			goto IL_007d;
+		}
+	}
+	{
+		// card.parentToReturnTo=null;
+		CardObject_tEE05EB88BE0B25C5313C9A19C8159E9D38E5CD10 * L_24 = V_0;
+		NullCheck(L_24);
+		L_24->set_parentToReturnTo_6((Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 *)NULL);
+	}
+
+IL_007d:
 	{
 		// }
 		return;

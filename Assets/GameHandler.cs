@@ -38,6 +38,9 @@ public class GameHandler : MonoBehaviour,IDropHandler
 
 
         }
+        if(this.gameStatus=="not started"){
+             card.parentToReturnTo=null;
+        }
     }
 
     public void ShowRules(){
